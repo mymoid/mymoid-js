@@ -1,6 +1,8 @@
-import test from "mymoid-api";
+import { MymoidApi } from 'mymoid-api'
 
 export default function Page(): JSX.Element {
-  test()
-  return <>Hello World!</>;
+  const api = new MymoidApi()
+  const apiKey = api.getApiKey()
+
+  return <>Authentication: {apiKey}</>
 }
