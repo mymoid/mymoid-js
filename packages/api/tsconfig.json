@@ -1,0 +1,14 @@
+{
+  "include": ["src"],
+  "exclude": ["dist", "esm", "node_modules"],
+  "compilerOptions": {
+    "target": "es2022",
+    "outDir": "dist",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
