@@ -1,0 +1,19 @@
+{
+  "name": "mymoid-api",
+  "version": "0.0.0",
+  "description": "The client for interacting with the MYMOID API.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mymoid/mymoid-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mymoid/mymoid-js/issues"
+  },
+  "homepage": "https://github.com/mymoid/mymoid-js#readme"
+}
