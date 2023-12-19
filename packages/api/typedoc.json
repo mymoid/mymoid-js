@@ -1,0 +1,5 @@
+{
+  "name": "mymoid-js",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs"
+}
