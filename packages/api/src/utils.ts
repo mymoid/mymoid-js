@@ -1,5 +1,5 @@
-import { ApiError } from "./ApiError";
 import { MymoidApi } from "./MymoidApi";
+import { ApiError } from "./ApiError";
 import { MymoidApiError } from "./types";
 
 /**
@@ -70,7 +70,7 @@ async function handleError(response: Response): Promise<MymoidApiError> {
   });
 }
 
-export function paramsFor(args: any): string {
+export function createUrlParamsString(args: any): string {
   const params = new URLSearchParams();
   for (let key of Object.getOwnPropertyNames(args)) {
     if (

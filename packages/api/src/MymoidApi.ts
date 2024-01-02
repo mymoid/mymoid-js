@@ -1,4 +1,4 @@
-import PaymentOrdersEndpoints from "./endpoints/payments/PaymentOrdersEndpoints";
+import { PaymentOrdersEndpoints } from "./endpoints/payments/PaymentOrdersEndpoints";
 import { Options } from "./types";
 
 const defaultBaseUrl = process.env.MYMOID_BASE_URL ?? "https://apis.mymoid.com";
@@ -47,5 +47,4 @@ export class MymoidApi {
   public getOrganizationId() {
     return this.organizationId;
   }
-
 }

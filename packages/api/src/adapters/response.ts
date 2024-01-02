@@ -1,6 +1,8 @@
 import { List, ListJSON, PaymentOrder, PaymentOrderJSON } from "../types";
 
-export function listFromJSON(data: ListJSON<PaymentOrderJSON>): List<PaymentOrder> {
+export function paymentOrdersListFromJSON(
+  data: ListJSON<PaymentOrderJSON>
+): List<PaymentOrder> {
   return {
     limit: data.limit,
     page: data.page,

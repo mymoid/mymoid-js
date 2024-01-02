@@ -6,11 +6,11 @@ import {
   PaymentOrderJSON,
   PaymentOrdersQueryParameters,
 } from "../../types";
-import { listFromJSON } from "../../adapters/response";
+import { paymentOrdersListFromJSON } from "../../adapters/response";
 import { paymentOrdersQueryToJSON } from "../../adapters/request";
-import { paramsFor } from "../../utils";
+import { createUrlParamsString } from "../../utils";
 
-export default class PaymentOrdersEndpoints extends EndpointsBase {
+export class PaymentOrdersEndpoints extends EndpointsBase {
   private static paymentsApi: string = "/payments/v1";
   /**
    * Get payment orders page by query parameters.
@@ -25,7 +25,7 @@ export default class PaymentOrdersEndpoints extends EndpointsBase {
     query: PaymentOrdersQueryParameters
   ): Promise<List<PaymentOrder>> {
     const organizationId = this.api.getOrganizationId();
-    const params = paramsFor(
+    const params = createUrlParamsString(
       paymentOrdersQueryToJSON({
         organizationId,
         ...query,
@@ -35,6 +35,6 @@ export default class PaymentOrdersEndpoints extends EndpointsBase {
     const response = await this.getRequest<ListJSON<PaymentOrderJSON>>(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
     );
-    return listFromJSON(response);
+    return paymentOrdersListFromJSON(response);
   }
 }
