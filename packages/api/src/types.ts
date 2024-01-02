@@ -44,8 +44,6 @@ export interface PaymentOrdersQueryParameters extends Pagination {
   paymentPoints?: string[];
 }
 
-// Response API JSON
-
 export interface ListJSON<TItemType> {
   page: number;
   limit: number;
@@ -88,4 +86,12 @@ export interface PaymentOrder {
   reference: string;
   shortCode: string;
   status: PaymentOrderStatus;
+}
+
+export interface MymoidApiError {
+  code: string;
+  message: string;
+  status: number;
+  origin: string;
+  details: { message: string }[];
 }

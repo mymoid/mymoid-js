@@ -2,21 +2,13 @@ import { MymoidApi } from 'mymoid-api'
 
 export default async function Page() {
   const api = new MymoidApi()
-  async function PaymentOrders() {
-    try {
-      const paymentOrderPage = await api.paymentOrders.getPage({
-        page: 0,
-        limit: 10
-      })
-      return <div>Payment Order: {paymentOrderPage.totalElements}</div>
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  return (
-    <div>
-      <PaymentOrders />
-    </div>
-  )
+  const paymentOrderPage = await api.paymentOrders.getList({
+    page: 0,
+    limit: 5
+  }).catch((err) => {
+    console.log(err)
+    return null
+  })
+      
+  return <div>Payment Order: {paymentOrderPage?.content.length} </div>
 }

@@ -1,4 +1,4 @@
-import { EndpointsBase } from "./EndpointsBase";
+import { EndpointsBase } from "../EndpointsBase";
 import {
   List,
   ListJSON,
@@ -8,8 +8,10 @@ import {
 } from "../../types";
 import { listFromJSON } from "../../adapters/response";
 import { paymentOrdersQueryToJSON } from "../../adapters/request";
+import { paramsFor } from "../../utils";
 
 export default class PaymentOrdersEndpoints extends EndpointsBase {
+  private static paymentsApi: string = "/payments/v1";
   /**
    * Get payment orders page by query parameters.
    *
@@ -23,24 +25,16 @@ export default class PaymentOrdersEndpoints extends EndpointsBase {
     query: PaymentOrdersQueryParameters
   ): Promise<List<PaymentOrder>> {
     const organizationId = this.api.getOrganizationId();
-    const params = this.paramsFor(
+    const params = paramsFor(
       paymentOrdersQueryToJSON({
         organizationId,
         ...query,
       })
     );
+
     const response = await this.getRequest<ListJSON<PaymentOrderJSON>>(
-      `/payment-orders${params}`
+      PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
     );
     return listFromJSON(response);
-  }
-
-  queryToJSON(query: PaymentOrdersQueryParameters): any {
-    const organizationId = this.api.getOrganizationId();
-    return {
-      organization_id: organizationId,
-
-      ...query,
-    };
   }
 }
