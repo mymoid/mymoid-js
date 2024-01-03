@@ -1,5 +1,0 @@
-{
-  "name": "mymoid-api",
-  "entryPoints": ["src/index.ts", "src/types.ts"],
-  "out": "docs"
-}

@@ -5,7 +5,7 @@ export default async function Page() {
   const paymentOrderPage = await api.paymentOrders
     .getList({
       page: 0,
-      limit: 10,
+      limit: 5,
       status: ['PAID']
     })
     .catch((err) => {
