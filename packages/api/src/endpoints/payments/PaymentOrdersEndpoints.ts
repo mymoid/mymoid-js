@@ -5,6 +5,7 @@ import {
   PaymentOrder,
   PaymentOrderJSON,
   PaymentOrdersQueryParameters,
+  MymoidApiError,
 } from "../../types";
 import { paymentOrdersListFromJSON } from "../../adapters/response";
 import { paymentOrdersQueryToJSON } from "../../adapters/request";
@@ -22,8 +23,8 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    *
    */
   public async getList(
-    query: PaymentOrdersQueryParameters
-  ): Promise<List<PaymentOrder>> {
+    query?: PaymentOrdersQueryParameters
+  ): Promise<List<PaymentOrder> | MymoidApiError> {
     const organizationId = this.api.getOrganizationId();
     const params = createUrlParamsString(
       paymentOrdersQueryToJSON({

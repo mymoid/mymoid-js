@@ -15,6 +15,6 @@ export class EndpointsBase {
    * const response = await api.makeRequest("GET", "/payment-orders");
    */
   protected async getRequest<TReturnType>(url: string): Promise<TReturnType> {
-    return await makeRequest<TReturnType>("GET", url);
+    return await makeRequest<TReturnType>(this.api, "GET", url)
   }
 }

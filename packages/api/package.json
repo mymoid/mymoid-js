@@ -9,7 +9,7 @@
     "docs": "typedoc --options ./typedoc.js src",
     "build": "tsup src/index.ts --format esm,cjs --dts && npm run docs",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "test": "vitest"
+    "test": "vitest --typecheck"
   },
   "files": [
     "dist"

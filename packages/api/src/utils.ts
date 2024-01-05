@@ -17,16 +17,16 @@ import { MymoidApiError } from "./types";
  *
  */
 export async function makeRequest<TReturnType>(
+  api: MymoidApi,
   method: "GET" | "POST" | "PUT" | "DELETE",
   url: string,
   body: any = undefined,
   contentType: string | undefined = undefined
 ): Promise<TReturnType> {
-  const mymoidApi = new MymoidApi();
-  const apiKey = mymoidApi.getApiKey();
-  const baseUrl = mymoidApi.getBaseUrl();
+  const apiKey = api.getApiKey();
+  const baseUrl = api.getBaseUrl();
   const fullUrl = baseUrl + url;
-  const organizationId = mymoidApi.getOrganizationId();
+  const organizationId = api.getOrganizationId();
   const headers = {
     "x-organization-id": organizationId,
     "x-api-key": apiKey,
@@ -45,7 +45,8 @@ export async function makeRequest<TReturnType>(
     };
     const response = await fetch(fullUrl, opts);
     if (!response.ok) {
-      await handleError(response);
+      const errorResponse = await response.json();
+      await handleError(errorResponse);
     }
     if (response.status === 204) {
       return null as TReturnType;
@@ -57,14 +58,13 @@ export async function makeRequest<TReturnType>(
   }
 }
 
-async function handleError(response: Response): Promise<MymoidApiError> {
-  const errorResponse = await response.json();
+async function handleError(error: MymoidApiError): Promise<MymoidApiError> {
   throw new ApiError({
-    code: errorResponse.code,
-    message: errorResponse.message,
-    status: errorResponse.status,
-    origin: errorResponse.origin,
-    details: errorResponse.details.map((detail: { message: string }) => {
+    code: error.code,
+    message: error.message,
+    status: error.status,
+    origin: error.origin,
+    details: error.details.map((detail: { message: string }) => {
       return { message: detail.message };
     }),
   });
