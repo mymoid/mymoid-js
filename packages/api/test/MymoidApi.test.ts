@@ -36,7 +36,7 @@ describe("MymoidApi", () => {
     expect(baseUrl).toEqual("https://apis.test.mymoid.com");
   });
 
-  it("Should it call fetch with query parameters", async () => {
+  it("Api fetch should be called with query parameters", async () => {
     const mymoidApi = new MymoidApi({
       apiKey: "KEY_1234567890",
       organizationId: "ORG_12345",
@@ -69,14 +69,6 @@ describe("MymoidApi", () => {
   });
 
   it("Should return a payment orders list", async () => {
-    const paymentOrdersList = buildValidPaymentOrdersList();
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(paymentOrdersList),
-      })
-    );
-
     const mymoidApi = new MymoidApi({
       apiKey: "KEY_1234567890",
       organizationId: "ORG_12345",
@@ -108,7 +100,7 @@ describe("MymoidApi", () => {
           paymentOrderId: "123",
           amount: 100,
           concept: "concept",
-          creationDate: new Date(paymentOrdersList.content[0].creation_date),
+          creationDate: new Date("2021-01-01 00:00:00"),
           currency: "EUR",
           reference: "reference",
           shortCode: "short_code",
@@ -117,5 +109,4 @@ describe("MymoidApi", () => {
       ],
     });
   });
-
 });
