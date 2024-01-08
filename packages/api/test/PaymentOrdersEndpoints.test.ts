@@ -3,7 +3,7 @@ import { MymoidApi } from "../src/MymoidApi";
 import { buildValidPaymentOrdersList } from "./data/validPaymentOrders";
 import { PaymentOrderStatus } from "../src/types";
 
-global.fetch = vi.fn();
+const fetch = vi.spyOn(global, 'fetch')
 
 describe("MymoidApi - Payment orders list", () => {
   beforeEach(() => {
@@ -12,12 +12,12 @@ describe("MymoidApi - Payment orders list", () => {
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(paymentOrdersList),
-      })
+      } as Response)
     );
   });
 
   afterEach(() => {
-    global.fetch.mockReset();
+    fetch.mockReset();
   });
 
   it("Api fetch should be called with query parameters", async () => {
@@ -72,7 +72,7 @@ describe("MymoidApi - Payment orders list", () => {
           paymentOrderId: "123",
           amount: 100,
           concept: "concept",
-          creationDate: new Date("2021-01-01 00:00:00"),
+          creationDate: new Date("2021-01-01"),
           currency: "EUR",
           reference: "reference",
           shortCode: "short_code",

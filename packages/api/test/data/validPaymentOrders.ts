@@ -18,7 +18,7 @@ export function buildValidPaymentOrdersList(): ListJSON<PaymentOrderJSON> {
         payment_order_id: "123",
         amount: 100,
         concept: "concept",
-        creation_date: new Date("2021-01-01 00:00:00").toISOString(),
+        creation_date: new Date("2021-01-01").toISOString(),
         currency: "EUR",
         reference: "reference",
         short_code: "short_code",

@@ -2,7 +2,7 @@ import { describe, beforeEach, expect, it, vi } from "vitest";
 import { MymoidApi } from "../src/MymoidApi";
 import { buildValidApiError } from "./data/validApiError";
 
-global.fetch = vi.fn();
+const fetch = vi.spyOn(global, "fetch")
 
 describe("ApiError", () => {
   beforeEach(() => {
@@ -11,12 +11,12 @@ describe("ApiError", () => {
       Promise.resolve({
         ok: false,
         json: () => Promise.resolve(apiError),
-      })
+      } as Response)
     );
   });
 
   afterEach(() => {
-    global.fetch.mockReset();
+    fetch.mockReset();
   });
 
   it("Should return an ApiError when response is not ok", async () => {
