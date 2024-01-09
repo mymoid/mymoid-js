@@ -4,6 +4,7 @@ import {
   PaymentOrder,
   PaymentOrderJSON
 } from './types'
+import { List, ListJSON } from '../shared/types'
 
 // TODO: improve this function to not "reorder" the query parameters
 export function paymentOrdersQueryToJSON(
