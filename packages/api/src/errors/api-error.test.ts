@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { ApiError } from './api-error'
-import { buildValidApiError } from './test/data/valida-api-error'
+import { buildValidApiError } from './test/data/valid-api-error'
 
 describe('ApiError', () => {
   it('should return an message when response is not ok', async () => {

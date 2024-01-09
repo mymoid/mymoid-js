@@ -1,6 +1,9 @@
 import { EndpointsBase } from '../shared/endpoints-base'
 import { createUrlParamsString } from '../shared/utils'
-import { paymentOrdersListFromJSON, paymentOrdersQueryToJSON } from './mappers'
+import {
+  paymentOrdersListFromJSON,
+  paymentOrdersQueryToJSON
+} from './mappers'
 import {
   PaymentOrder,
   PaymentOrderJSON,
