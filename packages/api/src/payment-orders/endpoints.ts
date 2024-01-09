@@ -19,7 +19,7 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    * @returns Payment orders page.
    *
    */
-  public async getList(
+  public async get(
     query?: PaymentOrdersQueryParameters
   ): Promise<List<PaymentOrder>> {
     const organizationId = this.api.getOrganizationId()

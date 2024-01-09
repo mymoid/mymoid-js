@@ -26,7 +26,7 @@ describe('Payment orders list', () => {
   })
 
   it('should be called with query parameters', async () => {
-    await mymoidApi.paymentOrders.getList({
+    await mymoidApi.paymentOrders.get({
       page: 1,
       limit: 10,
       q: 'q',
@@ -52,7 +52,7 @@ describe('Payment orders list', () => {
   })
 
   it('should return a payment orders list', async () => {
-    const response = await mymoidApi.paymentOrders.getList()
+    const response = await mymoidApi.paymentOrders.get()
     expect(response).toEqual({
       limit: 10,
       page: 1,

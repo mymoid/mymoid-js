@@ -3,7 +3,7 @@ import { MymoidApi } from 'mymoid-api'
 export default async function Page() {
   const api = new MymoidApi()
   const paymentOrderPage = await api.paymentOrders
-    .getList({
+    .get({
       page: 0,
       limit: 5,
       status: ['PAID']
