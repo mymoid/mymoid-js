@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { paymentOrdersListFromJSON } from "../src/adapters/response";
-import { PaymentOrderStatus } from "../src/types";
-import { buildValidPaymentOrdersList } from "./data/validPaymentOrders";
+import { paymentOrdersListFromJSON } from "./response";
+import { PaymentOrderStatus } from "../../../types";
+import { buildValidPaymentOrdersList } from "../../../../test/data/validPaymentOrders";
 
 it("should return a list of payment orders", () => {
   const paymentOrders = paymentOrdersListFromJSON(buildValidPaymentOrdersList());

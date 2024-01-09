@@ -1,9 +1,9 @@
 import { describe, beforeEach, expect, it, vi } from "vitest";
-import { MymoidApi } from "../src/MymoidApi";
-import { buildValidPaymentOrdersList } from "./data/validPaymentOrders";
-import { PaymentOrderStatus } from "../src/types";
+import { MymoidApi } from "../../MymoidApi";
+import { buildValidPaymentOrdersList } from "../../../test/data/validPaymentOrders";
+import { PaymentOrderStatus } from "../../types";
 
-global.fetch = vi.fn();
+const fetch = vi.spyOn(global, "fetch");
 
 describe("MymoidApi - Payment orders list", () => {
   beforeEach(() => {
@@ -12,12 +12,12 @@ describe("MymoidApi - Payment orders list", () => {
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(paymentOrdersList),
-      })
+      } as Response)
     );
   });
 
   afterEach(() => {
-    global.fetch.mockReset();
+    fetch.mockReset();
   });
 
   it("Api fetch should be called with query parameters", async () => {

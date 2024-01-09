@@ -1,7 +1,7 @@
 import {
   PaymentOrdersQueryParameters,
   PaymentOrdersQueryParametersJSON,
-} from "../types";
+} from "../../../types";
 
 // TODO: improve this function to not "reorder" the query parameters
 export function paymentOrdersQueryToJSON(

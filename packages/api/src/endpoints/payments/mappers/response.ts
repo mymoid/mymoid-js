@@ -1,4 +1,4 @@
-import { List, ListJSON, PaymentOrder, PaymentOrderJSON } from "../types";
+import { List, ListJSON, PaymentOrder, PaymentOrderJSON } from "../../../types";
 
 export function paymentOrdersListFromJSON(
   data: ListJSON<PaymentOrderJSON>
