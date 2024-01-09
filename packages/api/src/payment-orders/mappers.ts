@@ -54,7 +54,7 @@ function paymentOrderFromJSON(paymentOrder: PaymentOrderJSON): PaymentOrder {
     paymentOrderId: paymentOrder.payment_order_id,
     amount: paymentOrder.amount,
     concept: paymentOrder.concept,
-    creationDate: new Date(paymentOrder.creation_date),
+    creationDate: paymentOrder.creation_date,
     currency: paymentOrder.currency,
     reference: paymentOrder.reference,
     shortCode: paymentOrder.short_code,

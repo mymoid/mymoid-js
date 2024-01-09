@@ -47,7 +47,7 @@ export interface PaymentOrder {
   paymentOrderId: string
   amount: number
   concept: string
-  creationDate: Date
+  creationDate: string
   currency: Currency
   reference: string
   shortCode: string

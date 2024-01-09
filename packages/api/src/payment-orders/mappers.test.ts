@@ -21,7 +21,7 @@ describe('Payment orders - mappers', () => {
           paymentOrderId: '123',
           amount: 100,
           concept: 'concept',
-          creationDate: new Date('2021-01-01T00:00:00.000Z'),
+          creationDate: '2021-01-01T00:00:00.000Z',
           currency: 'EUR',
           reference: 'reference',
           shortCode: 'short_code',
