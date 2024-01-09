@@ -1,8 +1,29 @@
 import { MymoidApi } from 'mymoid-api'
 
-export default function Page(): JSX.Element {
+export default async function Page() {
   const api = new MymoidApi()
-  const apiKey = api.getApiKey()
+  const paymentOrderPage = await api.paymentOrders
+    .get({
+      page: 0,
+      limit: 5,
+      status: ['PAID']
+    })
+    .catch((err) => {
+      console.log(err)
+      return null
+    })
 
-  return <>Authentication: {apiKey}</>
+  return (
+    <div>
+      Payment Order:{' '}
+      {paymentOrderPage?.content.map((paymentOrder) => {
+        return (
+          <div key={paymentOrder.paymentOrderId}>
+            {paymentOrder.paymentOrderId} || {paymentOrder.amount} ||{' '}
+            {paymentOrder.status} || {paymentOrder.concept}
+          </div>
+        )
+      })}{' '}
+    </div>
+  )
 }

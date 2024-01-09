@@ -6,9 +6,10 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts && npx typedoc",
-    "dev": "tsup src/index.ts --format esm,cjs --watch --dts && npx typedoc --watch",
-    "test": "vitest"
+    "docs": "typedoc --options ./typedoc.js src",
+    "build": "tsup src/index.ts --format esm,cjs --dts && npm run docs",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+    "test": "vitest run --typecheck"
   },
   "files": [
     "dist"

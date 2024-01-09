@@ -1,14 +1,15 @@
 {
-  "include": ["src"],
+  "include": ["src", "src/payment-orders/test"],
   "exclude": ["dist", "esm", "node_modules"],
   "compilerOptions": {
     "target": "es2022",
     "outDir": "dist",
     "lib": ["dom", "esnext"],
     "declaration": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true,
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["vitest/globals"]
   }
 }

@@ -1,0 +1,78 @@
+import { describe, beforeEach, expect, it, vi } from 'vitest'
+import { buildValidPaymentOrdersList } from './test/data/valid-payment-orders'
+import { MymoidApi } from '../api'
+import { PaymentOrderStatus } from './types'
+
+const fetch = vi.spyOn(global, 'fetch')
+const mymoidApi = new MymoidApi({
+  apiKey: 'KEY_1234567890',
+  organizationId: 'ORG_12345',
+  baseUrl: 'https://apis.test.mymoid.com'
+})
+
+describe('Payment orders list', () => {
+  beforeEach(() => {
+    const paymentOrdersList = buildValidPaymentOrdersList()
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(paymentOrdersList)
+      } as Response)
+    )
+  })
+
+  afterEach(() => {
+    fetch.mockReset()
+  })
+
+  it('should be called with query parameters', async () => {
+    await mymoidApi.paymentOrders.get({
+      page: 1,
+      limit: 10,
+      q: 'q',
+      startDate: new Date('2023-12-31').toISOString(),
+      endDate: new Date('2023-12-31').toISOString(),
+      maxAmount: 100000,
+      minAmount: 0,
+      status: ['AVAILABLE'] as PaymentOrderStatus[],
+      paymentPoints: ['paymentPoints1', 'paymentPoints2']
+    })
+    expect(fetch).toBeCalledWith(
+      'https://apis.test.mymoid.com/payments/v1/payment-orders?organization_id=ORG_12345&start_date=2023-12-31T00%3A00%3A00.000Z&end_date=2023-12-31T00%3A00%3A00.000Z&max_amount=100000&payment_points=paymentPoints1%2CpaymentPoints2&page=1&limit=10&q=q&status=AVAILABLE',
+      {
+        body: undefined,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'KEY_1234567890',
+          'x-organization-id': 'ORG_12345'
+        },
+        method: 'GET'
+      }
+    )
+  })
+
+  it('should return a payment orders list', async () => {
+    const response = await mymoidApi.paymentOrders.get()
+    expect(response).toEqual({
+      limit: 10,
+      page: 1,
+      totalElements: 1,
+      numberOfElements: 1,
+      last: true,
+      first: true,
+      empty: false,
+      content: [
+        {
+          paymentOrderId: '123',
+          amount: 100,
+          concept: 'concept',
+          creationDate: '2021-01-01T00:00:00.000Z',
+          currency: 'EUR',
+          reference: 'reference',
+          shortCode: 'short_code',
+          status: 'AVAILABLE'
+        }
+      ]
+    })
+  })
+})
