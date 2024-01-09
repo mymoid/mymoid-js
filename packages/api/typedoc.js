@@ -2,7 +2,6 @@ const excludeFiles = ["index", "utils"];
 
 module.exports = {
   name: "mymoid-api",
-  readme: "./public/getting-started.md",
   out: "docs",
   entryPoints: "./src",
   exclude: [
