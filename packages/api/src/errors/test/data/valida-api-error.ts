@@ -1,4 +1,4 @@
-import { MymoidApiError } from "../../src/types";
+import { MymoidApiError } from "../../../shared/types";
 
 export function buildValidApiError(): MymoidApiError {
   return {

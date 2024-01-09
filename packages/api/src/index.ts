@@ -1,1 +1,0 @@
-export { MymoidApi } from "./MymoidApi"
