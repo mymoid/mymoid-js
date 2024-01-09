@@ -1,18 +1,18 @@
-import { EndpointsBase } from "../EndpointsBase";
+import { EndpointsBase } from '../shared/endpoints-base'
+import { createUrlParamsString } from '../shared/utils'
 import {
-  List,
-  ListJSON,
+  paymentOrdersListFromJSON,
+  paymentOrdersQueryToJSON
+} from './mappers'
+import {
   PaymentOrder,
   PaymentOrderJSON,
-  PaymentOrdersQueryParameters,
-  MymoidApiError,
-} from "../../types";
-import { paymentOrdersListFromJSON } from "../../adapters/response";
-import { paymentOrdersQueryToJSON } from "../../adapters/request";
-import { createUrlParamsString } from "../../utils";
+  PaymentOrdersQueryParameters
+} from './types'
+import { List, ListJSON } from '../shared/types'
 
 export class PaymentOrdersEndpoints extends EndpointsBase {
-  private static paymentsApi: string = "/payments/v1";
+  private static paymentsApi: string = '/payments/v1'
   /**
    * Get payment orders page by query parameters.
    *
@@ -22,20 +22,20 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    * @returns Payment orders page.
    *
    */
-  public async getList(
+  public async get(
     query?: PaymentOrdersQueryParameters
-  ): Promise<List<PaymentOrder> | MymoidApiError> {
-    const organizationId = this.api.getOrganizationId();
+  ): Promise<List<PaymentOrder>> {
+    const organizationId = this.api.getOrganizationId()
     const params = createUrlParamsString(
       paymentOrdersQueryToJSON({
         organizationId,
-        ...query,
+        ...query
       })
-    );
+    )
 
     const response = await this.getRequest<ListJSON<PaymentOrderJSON>>(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
-    );
-    return paymentOrdersListFromJSON(response);
+    )
+    return paymentOrdersListFromJSON(response)
   }
 }

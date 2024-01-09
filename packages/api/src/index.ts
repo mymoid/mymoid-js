@@ -1,1 +1,1 @@
-export { MymoidApi } from "./MymoidApi"
+export { MymoidApi } from './api'

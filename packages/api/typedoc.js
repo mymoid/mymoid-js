@@ -1,19 +1,19 @@
-const excludeFiles = ["index", "utils"];
+const excludeFiles = ['index']
 
 module.exports = {
-  name: "mymoid-api",
-  readme: "./public/getting-started.md",
-  out: "docs",
-  entryPoints: "./src",
+  name: 'mymoid-api',
+  out: 'docs',
+  entryPoints: './src',
   exclude: [
-    "**/node_modules/**/*",
-    "src/adapters/**/*",
-    "src/endpoints/*",
-    ...excludeFiles.map((f) => `./src/${f}.ts`),
+    '**/node_modules/**/*',
+    'src/errors/**/*',
+    'src/shared/**/*',
+    '**/*.test.ts*',
+    ...excludeFiles.map((f) => `./src/${f}.ts`)
   ],
-  entryPointStrategy: "Expand",
+  entryPointStrategy: 'Expand',
   excludeExternals: false,
   excludePrivate: true,
   excludeProtected: true,
-  hideGenerator: true,
-};
+  hideGenerator: true
+}
