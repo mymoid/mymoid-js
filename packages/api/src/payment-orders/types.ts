@@ -1,4 +1,4 @@
-import { Currency, Pagination } from '../shared/types'
+import { Currency, List, Pagination } from '../shared/types'
 
 export type PaymentOrderStatus =
   | 'AVAILABLE'
@@ -53,3 +53,5 @@ export interface PaymentOrder {
   shortCode: string
   status: PaymentOrderStatus
 }
+
+export type PaymentOrders = List<PaymentOrder>
