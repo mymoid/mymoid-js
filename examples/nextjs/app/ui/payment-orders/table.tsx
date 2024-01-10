@@ -14,6 +14,7 @@ export default function PaymentOrdersTable({
           {['Amount', 'Status', 'Concept', 'Short Code', 'Date'].map(
             (title) => (
               <th
+                key={title}
                 scope="col"
                 className="px-4 py-3 text-xs font-normal uppercase"
               >
