@@ -2,7 +2,6 @@ import { MymoidApi } from 'mymoid-api'
 import PaymentOrdersTable from '@/app/ui/payment-orders/table'
 import Pagination from '@/app/ui/payment-orders/pagination'
 import Search from '@/app/ui/search'
-import { Button } from './ui/button'
 
 const ITEMS_PER_PAGE = 12
 
