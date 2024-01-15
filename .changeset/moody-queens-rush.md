@@ -1,5 +1,5 @@
 ---
-"mymoid-api": minor
+'@mymoid/api': minor
 ---
 
 Create a release workflow with publishing.

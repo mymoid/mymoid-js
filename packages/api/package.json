@@ -1,5 +1,5 @@
 {
-  "name": "mymoid-api",
+  "name": "@mymoid/api",
   "version": "0.0.0",
   "description": "The client for interacting with the MYMOID API.",
   "main": "./dist/index.js",
