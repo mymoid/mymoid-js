@@ -9,7 +9,8 @@
     "docs": "typedoc --options ./typedoc.js src",
     "build": "tsup src/index.ts --format esm,cjs --dts && npm run docs",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "test": "vitest run --typecheck"
+    "test": "vitest run --typecheck",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "files": [
     "dist"
@@ -32,5 +33,8 @@
     "tsup": "^8.0.1",
     "typedoc": "^0.25.4",
     "vitest": "^1.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
