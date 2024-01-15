@@ -1,11 +1,11 @@
-import { PaymentOrder } from 'mymoid-api'
+import { type PaymentOrder, Camelize } from 'mymoid-api'
 import PaymentOrderStatus from './status'
 import { formatCurrency } from '@/app/lib/utils'
 
 export default function PaymentOrdersTable({
   paymentOrders
 }: {
-  paymentOrders?: PaymentOrder[]
+  paymentOrders?: Camelize<PaymentOrder>[]
 }) {
   return (
     <table className="min-w-full">

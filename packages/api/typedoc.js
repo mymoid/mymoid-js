@@ -6,9 +6,10 @@ module.exports = {
   entryPoints: './src',
   exclude: [
     '**/node_modules/**/*',
-    'src/errors/**/*',
-    'src/shared/**/*',
+    '**/errors/**/*',
+    '**/shared/**/*',
     '**/*.test.ts*',
+    '**/test/**',
     ...excludeFiles.map((f) => `./src/${f}.ts`)
   ],
   entryPointStrategy: 'Expand',

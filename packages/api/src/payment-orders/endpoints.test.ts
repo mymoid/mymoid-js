@@ -27,15 +27,14 @@ describe('Payment orders list', () => {
 
   it('should be called with query parameters', async () => {
     await mymoidApi.paymentOrders.get({
-      page: 1,
-      limit: 10,
-      q: 'q',
       startDate: new Date('2023-12-31').toISOString(),
       endDate: new Date('2023-12-31').toISOString(),
       maxAmount: 100000,
-      minAmount: 0,
-      status: ['AVAILABLE'] as PaymentOrderStatus[],
-      paymentPoints: ['paymentPoints1', 'paymentPoints2']
+      paymentPoints: ['paymentPoints1', 'paymentPoints2'],
+      page: 1,
+      limit: 10,
+      q: 'q',
+      status: ['AVAILABLE'] as PaymentOrderStatus[]
     })
     expect(fetch).toBeCalledWith(
       'https://apis.test.mymoid.com/payments/v1/payment-orders?organization_id=ORG_12345&start_date=2023-12-31T00%3A00%3A00.000Z&end_date=2023-12-31T00%3A00%3A00.000Z&max_amount=100000&payment_points=paymentPoints1%2CpaymentPoints2&page=1&limit=10&q=q&status=AVAILABLE',
@@ -67,6 +66,7 @@ describe('Payment orders list', () => {
           amount: 100,
           concept: 'concept',
           creationDate: '2021-01-01T00:00:00.000Z',
+          expirationDate: '2021-01-01T00:00:00.000Z',
           currency: 'EUR',
           reference: 'reference',
           shortCode: 'short_code',

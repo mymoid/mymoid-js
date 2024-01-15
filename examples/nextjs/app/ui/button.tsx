@@ -1,13 +1,17 @@
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
+  variant?: 'primary'
 }
 
-export function Button({ children, className, ...rest }: ButtonProps) {
+export function Button({ children, variant, className, ...rest }: ButtonProps) {
   return (
     <button
       {...rest}
       className={[
-        'px-2 py-1 border rounded-md font-light text-sm shadow text-neutral-300 border-neutral-500 hover:text-inherit active:bg-neutral-900 transition shadow-neutral-500/15 active:shadow',
+        'flex px-2 py-1 items-center gap-1 rounded-md text-sm shadow text-neutral-300 transition shadow-neutral-500/15 active:shadow',
+        variant === 'primary'
+          ? 'bg-white text-neutral-800 hover:text-black active:bg-neutral-400 hover:bg-neutral-200'
+          : 'border border-neutral-500 active:bg-neutral-900 font-light hover:text-inherit',
         className
       ].join(' ')}
     >

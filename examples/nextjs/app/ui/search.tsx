@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
+import TextFiled from './text-field'
 
 export default function Search({
   placeholder,
@@ -34,8 +35,8 @@ export default function Search({
       <label htmlFor="search" className="sr-only">
         Search
       </label>
-      <input
-        className="peer block w-full rounded-md border border-neutral-500 px-2 py-1 text-sm bg-transparent focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition duration-500 pl-8"
+      <TextFiled
+        className="peer pl-8"
         placeholder={placeholder}
         onChange={(e) => {
           handleSearch(e.target.value)
