@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# Mymoid Javascript API SDK
+# Mymoid JavaScript API SDK
 
 This library offers an easy to use interface for accessing the Mymoid REST API using JavaScript or TypeScript.
 
