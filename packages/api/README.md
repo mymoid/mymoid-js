@@ -6,6 +6,9 @@
 
 # Mymoid JavaScript API SDK
 
+[![NPM Version](https://img.shields.io/npm/v/@mymoid/api)](https://www.npmjs.com/package/@mymoid/api)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@mymoid/api)
+
 This library offers an easy to use interface for accessing the Mymoid REST API using JavaScript or TypeScript.
 
 ## Documentation
