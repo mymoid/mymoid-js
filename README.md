@@ -1,81 +1,31 @@
-# Turborepo starter
+<p align="center">
+  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
+  <svg width="auto" height="52" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.85712 0C4.43506 0 5.71424 1.34314 5.71424 2.99999V14.9999C5.71424 16.6568 4.43506 17.9999 2.85712 17.9999C1.27918 17.9999 0 16.6568 0 14.9999V2.99999C0 1.34314 1.27918 0 2.85712 0Z" fill="url(#paint0_linear_9160_76682)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.1428 0C18.7207 0 19.9999 1.34314 19.9999 2.99999V14.9999C19.9999 16.6568 18.7207 17.9999 17.1428 17.9999C15.5648 17.9999 14.2856 16.6568 14.2856 14.9999V2.99999C14.2856 1.34314 15.5648 0 17.1428 0Z" fill="url(#paint1_linear_9160_76682)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M18.9719 0.695408C20.1841 1.7561 20.3479 3.64778 19.3377 4.92061L12.1949 13.9206C11.1847 15.1934 9.38314 15.3654 8.17093 14.3047C6.95872 13.244 6.79494 11.3523 7.80511 10.0795L14.9479 1.07952C15.9581 -0.193308 17.7597 -0.365279 18.9719 0.695408Z" fill="url(#paint2_linear_9160_76682)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M1.02811 0.695408C2.24032 -0.365279 4.04191 -0.193308 5.05209 1.07952L12.1949 10.0795C13.2051 11.3523 13.0413 13.244 11.8291 14.3047C10.6169 15.3654 8.81526 15.1934 7.80509 13.9206L0.662291 4.92061C-0.347883 3.64778 -0.184102 1.7561 1.02811 0.695408Z" fill="url(#paint3_linear_9160_76682)"></path><defs><linearGradient id="paint0_linear_9160_76682" x1="2.857" y1="3.62486" x2="2.857" y2="15.8123" gradientUnits="userSpaceOnUse"><stop stop-color="#5EC110"></stop><stop offset="1" stop-color="#B0D810"></stop></linearGradient><linearGradient id="paint1_linear_9160_76682" x1="17.1428" y1="3.24994" x2="17.1426" y2="15.7499" gradientUnits="userSpaceOnUse"><stop stop-color="#18D18E"></stop><stop offset="1" stop-color="#10D8CC"></stop></linearGradient><linearGradient id="paint2_linear_9160_76682" x1="17.3809" y1="2.75" x2="9.57343" y2="11.6248" gradientUnits="userSpaceOnUse"><stop offset="0.0416667" stop-color="#18D184"></stop><stop offset="1" stop-color="#10D890"></stop></linearGradient><linearGradient id="paint3_linear_9160_76682" x1="9.69191" y1="11.3728" x2="0.42418" y2="1.371" gradientUnits="userSpaceOnUse"><stop stop-color="#2BBD89"></stop><stop offset="1" stop-color="#50D810"></stop></linearGradient></defs></svg>
+  </a>
+</p>
 
-This is an official starter Turborepo.
+# Mymoid Javascript Libraries
 
-## Using this example
+This monorepo integrates a set of Javasript/Typescript libraries to easily interact with the Mymoid REST API.
 
-Run the following command:
+## Documentation
 
-```sh
-npx create-turbo@latest
-```
+To learn how to get started with Mymoid, please consult the [developer's portal](https://developers.mymoid.com).
 
-## What's inside?
+Check out our packages.
 
-This Turborepo includes the following packages/apps:
+## Packages
 
-### Apps and Packages
+- [@mymoid/api](): Offers an easy to use interface for accessing the Mymoid REST API.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Runing the example app
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+The current example app is bootstrapped with Next.js App Router.
 
-### Utilities
+First, run the development server:
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```js
 pnpm dev
 ```
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
