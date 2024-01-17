@@ -1,5 +1,15 @@
 # @mymoid/api
 
+## 0.2.0
+
+### Minor Changes
+
+- 4448751: - Create `create` method to create a new payment order.
+  - Add `PaymentOrderCreationParameters` type.
+  - Add `camelize` and `decamelize` methods as utils.
+  - Add `CamelCase`and `Camelize` shared types.
+  - Remove mappers.
+
 ## 0.1.1
 
 ### Patch Changes

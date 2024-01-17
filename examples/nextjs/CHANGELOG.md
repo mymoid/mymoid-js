@@ -1,5 +1,16 @@
 # nextjs
 
+## 1.1.0
+
+### Minor Changes
+
+- 4448751: Add create payment order page example.
+
+### Patch Changes
+
+- Updated dependencies [4448751]
+  - @mymoid/api@0.2.0
+
 ## 1.0.2
 
 ### Patch Changes
