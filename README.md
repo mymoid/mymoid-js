@@ -9,25 +9,23 @@
 
 # Mymoid Javascript Libraries
 
-This monorepo integrates a set of Javasript/Typescript libraries to easily interact with the Mymoid REST API.
+This monorepo combines a set of JavaScript/TypeScript libraries designed to facilitate intuitive interaction with the Mymoid REST API.
 
 ## Documentation
 
-To learn how to get started with Mymoid, please consult the [developer's portal](https://developers.mymoid.com).
-
-Check out our packages.
+Explore our [developer's portal](https://developers.mymoid.com) for comprehensive guidance on getting started with Mymoid.
 
 ## Packages
 
-- [@mymoid/api](): Offers an easy to use interface for accessing the Mymoid REST API.
+- [@mymoid/api](): Offers an easy-to-use interface for access to the Mymoid REST API.
 
 ## Runing the example app
 
-The current example app is bootstrapped with Next.js App Router.
+The provided example app is powered by the Next.js App Router.
 
-First, run the development server:
+To launch the development server, execute the following command:
 
-```js
+```bash
 pnpm dev
 ```
 

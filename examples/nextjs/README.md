@@ -9,9 +9,9 @@
 
 # Mymoid Application Example with Next.js (App Router)
 
-This repository provides an example implementation of the Mymoid API SDK in a Next.js application using App Router.
+Hey there! 👋 Welcome to our Mymoid API SDK example with Next.js and the App Router.
 
-## Getting started
+## Getting Started
 
 In the root directory, run the development server:
 
@@ -19,11 +19,13 @@ In the root directory, run the development server:
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Now, open your preferred browser and visit [http://localhost:3000](http://localhost:3000) to view the outcome.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+For a deeper understanding, consider exploring these valuable resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+
+Feel free to explore and make the most of this example! 🚀
