@@ -1,4 +1,4 @@
-import { MymoidApi } from 'mymoid-api'
+import { MymoidApi } from '@mymoid/api'
 
 export default async function Page() {
   const api = new MymoidApi()
