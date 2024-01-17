@@ -33,6 +33,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm publish-packages
+          commit: 'chore(root): version packages'
+          title: 'chore(root): version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
