@@ -73,10 +73,10 @@ Explore the available API methods in the `@mymoid/api`.
 
 We appreciate feedback and contributions to this repository! Before you start, please review:
 
-- [MYMOID's general contribution guidelines]()
-- [MYMOID's code of conduct guidelines]()
-- [This repo's contribution guide]()
+- [MYMOID's general contribution guidelines](https://github.com/mymoid/.github/blob/master/CONTRIBUTING.md)
+- [MYMOID's code of conduct guidelines](https://github.com/mymoid/.github/blob/master/CODE_OF_CONDUCT.md)
+<!-- - [This repo's contribution guide]() -->
 
 ### Raise an issue
 
-To provide feedback or report a bug, please raise an issue on our [issue tracker](). We value your input!
+To provide feedback or report a bug, please raise an issue on our issue tracker. We value your input!
