@@ -7,9 +7,9 @@
   </a>
 </p>
 
-# Mymoid Application Example with Next.js (App Router)
+# MYMOID Application Example with Next.js (App Router)
 
-Hey there! 👋 Welcome to our Mymoid API SDK example with Next.js and the App Router.
+Hey there! 👋 Welcome to our MYMOID API SDK example with Next.js and the App Router.
 
 ## Getting Started
 

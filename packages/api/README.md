@@ -7,16 +7,16 @@
   </a>
 </p>
 
-# Mymoid JavaScript API SDK
+# MYMOID JavaScript API SDK
 
 [![NPM Version](https://img.shields.io/npm/v/@mymoid/api)](https://www.npmjs.com/package/@mymoid/api)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@mymoid/api)
 
-Welcome to the Mymoid JavaScript API SDK! 🎉 This library provides an easy-to-use interface for interacting with the Mymoid REST API using JavaScript or TypeScript.
+Welcome to the MYMOID JavaScript API SDK! 🎉 This library provides an easy-to-use interface for interacting with the MYMOID REST API using JavaScript or TypeScript.
 
 ## Documentation
 
-For detailed instructions on getting started with the Mymoid JavaScript API SDK, please refer to our [developer's portal](https://developers.mymoid.com).
+For detailed instructions on getting started with the MYMOID JavaScript API SDK, please refer to our [developer's portal](https://developers.mymoid.com).
 
 ## Getting Started
 
