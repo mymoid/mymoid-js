@@ -1,7 +1,7 @@
 const excludeFiles = ['index']
 
 module.exports = {
-  name: 'mymoid-api',
+  name: '@mymoid/api',
   out: 'docs',
   entryPoints: './src',
   exclude: [
