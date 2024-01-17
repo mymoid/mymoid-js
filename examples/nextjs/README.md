@@ -1,28 +1,31 @@
+<p align="center">
+  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
+   <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./public/m.svg">
+      <img src="./public/m.svg" height="64">
+    </picture>
+  </a>
+</p>
+
+# MYMOID Application Example with Next.js (App Router)
+
+Hey there! 👋 Welcome to our MYMOID API SDK example with Next.js and the App Router.
+
 ## Getting Started
 
-First, run the development server:
+In the root directory, run the development server:
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+Now, open your preferred browser and visit [http://localhost:3000](http://localhost:3000) to view the outcome.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+For a deeper understanding, consider exploring these valuable resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore and make the most of this example! 🚀

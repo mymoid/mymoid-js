@@ -1,54 +1,67 @@
+<p align="center">
+  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
+   <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="../../examples/nextjs/public/m.svg">
+      <img src="../../examples/nextjs/public/m.svg" height="64">
+    </picture>
+  </a>
+</p>
+
+# MYMOID JavaScript API SDK
+
+[![NPM Version](https://img.shields.io/npm/v/@mymoid/api)](https://www.npmjs.com/package/@mymoid/api)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@mymoid/api)
+
+Welcome to the MYMOID JavaScript API SDK! 🎉 This library provides an easy-to-use interface for interacting with the MYMOID REST API using JavaScript or TypeScript.
+
+## Documentation
+
+For detailed instructions on getting started with the MYMOID JavaScript API SDK, please refer to our [developer's portal](https://developers.mymoid.com).
+
 ## Getting Started
 
 ### Installation
 
-Using [npm](https://npmjs.org) in your project directory run the following command:
+To install the SDK in your project, run the following npm command:
 
 ```sh
 npm install @mymoid/api
 ```
 
-From the CDN:
-
-```html
-<script src="https://TODO"></script>
-```
-
-### Configure MYMOID
-
-### Configure the SDK
+### SDK Basic Setup
 
 Create a `MymoidApi` instance before initializing your application. You should only have one instance of the client.
 
-#### With environment variables (recommended)
+> [!IMPORTANT]
+> Ensure that you have an API Key and an Organization ID, as these are required for setup. If you don't have them yet, please refer to our [initial setup](https://developers.mymoid.com/guides/getting-started#initial-setup).
 
-> .env
+#### Using Environment Variables (Recommended)
+
+Set the following environment variables in your project:
 
 ```sh
 MYMOID_BASE_URL=https://apis.sta.mymoid.com
-MYMOID_API_KEY=THzYpoqpXr5viakdCdnGIat7Ehs912o4TZR1Mi0d
-MYMOID_ORGANIZATION_ID=8ee638b3-bb54-430c-a11a-c61741e476f0
+MYMOID_API_KEY=*********************
+MYMOID_ORGANIZATION_ID=******************
 ```
 
-#### Or, Passing `options` to `MymoidApi`
+#### Passing `Options` to `MymoidApi`
 
-> index.js
+Alternatively, you can pass options directly to MymoidApi instance:
 
 ```js
-import { MymoidApi } from '@mymoid/api';
+import { MymoidApi } from '@mymoid/api'
 
 const api = await MymoidApi({
-  baseUrl: "<MYMOID_BASE_URL>",
-  apiKey: "<MYMOID_API_KEY>",
-  organizationId: "<MYMOID_ORGANIZATION_ID>",
-});
+  baseUrl: '{MYMOID_BASE_URL}',
+  apiKey: '{MYMOID_API_KEY}',
+  organizationId: '{MYMOID_ORGANIZATION_ID}'
+})
 ```
-
-
 
 ## API Reference
 
-Explore API Methods available in `@mymoid/api`.
+Explore the available API methods in the `@mymoid/api`.
 
 - [Configuration Options]()
 - [MymoidApi]()
@@ -58,12 +71,12 @@ Explore API Methods available in `@mymoid/api`.
 
 ### Contributing
 
-We appreciate feedback and contribution to this repo! Before you get started, please see the following:
+We appreciate feedback and contributions to this repository! Before you start, please review:
 
-- [MYMOID's general contribution guidelines]()
-- [MYMOID's code of conduct guidelines]()
-- [This repo's contribution guide]()
+- [MYMOID's general contribution guidelines](https://github.com/mymoid/.github/blob/master/CONTRIBUTING.md)
+- [MYMOID's code of conduct guidelines](https://github.com/mymoid/.github/blob/master/CODE_OF_CONDUCT.md)
+<!-- - [This repo's contribution guide]() -->
 
 ### Raise an issue
 
-To provide feedback or report a bug, please [raise an issue on our issue tracker]().
+To provide feedback or report a bug, please raise an issue on our issue tracker. We value your input!
