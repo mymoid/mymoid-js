@@ -38,7 +38,7 @@ export class EndpointsBase {
       if (response.status === 204) {
         return null as TReturnType
       }
-      return await response.json()
+      return response.json()
     } catch (error) {
       // TODO: Add logic to this catch clause or eliminate it and rethrow the exception automatically. [sonarlint(typescript:S2737)]
       throw error
@@ -47,5 +47,12 @@ export class EndpointsBase {
 
   protected async getRequest<TReturnType>(url: string): Promise<TReturnType> {
     return await this.makeRequest<TReturnType>('GET', url)
+  }
+
+  protected async postRequest<TReturnType, TBody>(
+    url: string,
+    body?: TBody
+  ): Promise<TReturnType> {
+    return await this.makeRequest<TReturnType>('POST', url, body)
   }
 }

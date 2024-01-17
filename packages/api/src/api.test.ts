@@ -1,7 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { MymoidApi } from './api'
-
-const fetch = vi.spyOn(global, 'fetch')
 
 describe('MymoidApi', () => {
   it('Should setting using Options', () => {

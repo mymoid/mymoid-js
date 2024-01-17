@@ -1,19 +1,22 @@
-import "./globals.css";
-import type { Metadata } from "next";
+import './globals.css'
+import type { Metadata } from 'next'
+import { inter } from '@/app/ui/fonts'
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
-};
+  title: '',
+  description: ''
+}
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }): JSX.Element {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.className} antialiased max-h-screen pt-10`}>
+        <main className="p-10 max-w-5xl m-auto">{children}</main>
+      </body>
     </html>
-  );
+  )
 }

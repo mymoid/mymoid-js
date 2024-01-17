@@ -1,15 +1,12 @@
 import { EndpointsBase } from '../shared/endpoints-base'
-import { createUrlParamsString } from '../shared/utils'
+import { camelize, createUrlParamsString, decamelize } from '../shared/utils'
 import {
-  paymentOrdersListFromJSON,
-  paymentOrdersQueryToJSON
-} from './mappers'
-import {
+  PaymentOrderCreationParameters,
   PaymentOrder,
-  PaymentOrderJSON,
+  PaymentOrders,
   PaymentOrdersQueryParameters
 } from './types'
-import { List, ListJSON } from '../shared/types'
+import { Camelize } from '../shared/types'
 
 export class PaymentOrdersEndpoints extends EndpointsBase {
   private static paymentsApi: string = '/payments/v1'
@@ -23,19 +20,41 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    *
    */
   public async get(
-    query?: PaymentOrdersQueryParameters
-  ): Promise<List<PaymentOrder>> {
+    query?: Camelize<PaymentOrdersQueryParameters>
+  ): Promise<Camelize<PaymentOrders>> {
     const organizationId = this.api.getOrganizationId()
+
     const params = createUrlParamsString(
-      paymentOrdersQueryToJSON({
+      decamelize({
         organizationId,
         ...query
       })
     )
 
-    const response = await this.getRequest<ListJSON<PaymentOrderJSON>>(
+    const response: PaymentOrders = await this.getRequest(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
     )
-    return paymentOrdersListFromJSON(response)
+
+    return camelize(response)
+  }
+
+  /**
+   * Create a new payment order.
+   *
+   * @see https://developers.mymoid.com/api-reference#/operations/Create
+   *
+   * @param paymentOrder Details of the payment order to be created.
+   * @returns A Promise that resolves to the created payment order.
+   *
+   */
+  public async create(
+    paymentOrder: PaymentOrderCreationParameters
+  ): Promise<Camelize<PaymentOrder>> {
+    const response: PaymentOrder = await this.postRequest(
+      PaymentOrdersEndpoints.paymentsApi + '/payment-orders',
+      decamelize(paymentOrder)
+    )
+
+    return camelize(response)
   }
 }
