@@ -6,9 +6,12 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "clean": "turbo clean && rm -rf node_modules",
+    "publish-packages": "turbo run build lint test --filter=nextjs^... && changeset version && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@repo/eslint-config": "workspace:0.0.0",
     "@repo/typescript-config": "workspace:0.0.0",
     "prettier": "^3.1.1",
