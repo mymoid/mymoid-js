@@ -30,11 +30,11 @@ export function createUrlParamsString(args: any): string {
   return [...params].length > 0 ? `?${params.toString()}` : ''
 }
 
-function snakeCase(str: string): string {
+export function snakeCase(str: string): string {
   return str.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`)
 }
 
-function camelCase(str: string): string {
+export function camelCase(str: string): string {
   return str.replace(/_([a-z])/g, (_match, group) => group.toUpperCase())
 }
 
