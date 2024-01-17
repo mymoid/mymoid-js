@@ -7,7 +7,7 @@
   </a>
 </p>
 
-# Mymoid Javascript Libraries
+# Mymoid JavaScript Libraries
 
 This monorepo combines a set of JavaScript/TypeScript libraries designed to facilitate intuitive interaction with the Mymoid REST API.
 
