@@ -1,9 +1,13 @@
 import { describe, beforeEach, expect, it, vi } from 'vitest'
-import { buildValidPaymentOrdersList } from './test/data/valid-payment-orders'
+import {
+  buildValidPaymentOrdersList,
+  buildValidPaymentOrder
+} from './test/data'
 import { MymoidApi } from '../api'
-import { PaymentOrderStatus } from './types'
+import { PaymentOrderStatus, type PaymentOrder, PaymentOrders } from './types'
+import { Camelize } from '../shared/types'
 
-const fetch = vi.spyOn(global, 'fetch')
+const fetchSpy = vi.spyOn(global, 'fetch')
 const mymoidApi = new MymoidApi({
   apiKey: 'KEY_1234567890',
   organizationId: 'ORG_12345',
@@ -13,7 +17,7 @@ const mymoidApi = new MymoidApi({
 describe('Payment orders list', () => {
   beforeEach(() => {
     const paymentOrdersList = buildValidPaymentOrdersList()
-    fetch.mockImplementationOnce(() =>
+    fetchSpy.mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(paymentOrdersList)
@@ -22,7 +26,7 @@ describe('Payment orders list', () => {
   })
 
   afterEach(() => {
-    fetch.mockReset()
+    fetchSpy.mockReset()
   })
 
   it('should be called with query parameters', async () => {
@@ -36,7 +40,7 @@ describe('Payment orders list', () => {
       q: 'q',
       status: ['AVAILABLE'] as PaymentOrderStatus[]
     })
-    expect(fetch).toBeCalledWith(
+    expect(fetchSpy).toBeCalledWith(
       'https://apis.test.mymoid.com/payments/v1/payment-orders?organization_id=ORG_12345&start_date=2023-12-31T00%3A00%3A00.000Z&end_date=2023-12-31T00%3A00%3A00.000Z&max_amount=100000&payment_points=paymentPoints1%2CpaymentPoints2&page=1&limit=10&q=q&status=AVAILABLE',
       {
         body: undefined,
@@ -50,8 +54,9 @@ describe('Payment orders list', () => {
     )
   })
 
-  it('should return a payment orders list', async () => {
-    const response = await mymoidApi.paymentOrders.get()
+  it('should return a payment orders list camelize', async () => {
+    const response: Camelize<PaymentOrders> =
+      await mymoidApi.paymentOrders.get()
     expect(response).toEqual({
       limit: 10,
       page: 1,
@@ -73,6 +78,53 @@ describe('Payment orders list', () => {
           status: 'AVAILABLE'
         }
       ]
+    })
+  })
+})
+
+describe('Payment order details', () => {
+  beforeEach(() => {
+    const paymentOrder = buildValidPaymentOrder()
+    fetchSpy.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(paymentOrder)
+      } as Response)
+    )
+  })
+
+  afterEach(() => {
+    fetchSpy.mockReset()
+  })
+
+  it('should call fetch with payment order id', async () => {
+    await mymoidApi.paymentOrders.getById('123')
+    expect(fetchSpy).toBeCalledWith(
+      'https://apis.test.mymoid.com/payments/v1/payment-orders/123',
+      {
+        body: undefined,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'KEY_1234567890',
+          'x-organization-id': 'ORG_12345'
+        },
+        method: 'GET'
+      }
+    )
+  })
+  it("should return a payment order's details camelize", async () => {
+    const response: Camelize<PaymentOrder> =
+      await mymoidApi.paymentOrders.getById('123')
+    expect(response).toEqual({
+      paymentOrderId: '123',
+      amount: 100,
+      concept: 'concept',
+      creationDate: '2021-01-01T00:00:00.000Z',
+      expirationDate: '2021-01-01T00:00:00.000Z',
+      currency: 'EUR',
+      reference: 'reference',
+      shortCode: 'short_code',
+      status: 'AVAILABLE'
     })
   })
 })
