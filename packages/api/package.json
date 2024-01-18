@@ -6,8 +6,8 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "docs": "typedoc --options ./typedoc.js src",
-    "build": "tsup src/index.ts --format esm,cjs --dts && npm run docs",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build:docs": "typedoc --options ./typedoc.js src",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "test": "vitest run --typecheck",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
