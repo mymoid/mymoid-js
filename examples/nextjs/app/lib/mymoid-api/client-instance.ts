@@ -1,4 +1,4 @@
-import { MymoidApi } from 'mymoid-api'
+import { MymoidApi } from '@mymoid/api'
 
 function clientInstance() {
   return new MymoidApi()
