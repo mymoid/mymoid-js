@@ -1,6 +1,6 @@
 'use server'
 
-import { PaymentOrderCreationParameters } from 'mymoid-api'
+import { PaymentOrderCreationParameters } from '@mymoid/api'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { mymoid } from './mymoid-api'

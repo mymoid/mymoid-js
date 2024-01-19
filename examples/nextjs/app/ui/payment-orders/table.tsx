@@ -1,4 +1,4 @@
-import { type PaymentOrder, Camelize } from 'mymoid-api'
+import { type PaymentOrder, Camelize } from '@mymoid/api'
 import PaymentOrderStatus from './status'
 import { formatCurrency } from '@/app/lib/utils'
 
