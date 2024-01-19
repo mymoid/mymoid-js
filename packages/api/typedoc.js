@@ -2,7 +2,7 @@ const excludeFiles = ['index']
 
 module.exports = {
   name: '@mymoid/api',
-  out: 'docs',
+  out: '../../docs/api',
   exclude: [
     '**/node_modules/**/*',
     '**/errors/**/*',
