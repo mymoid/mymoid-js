@@ -10,33 +10,6 @@ import { Camelize } from '../shared/types'
 
 export class PaymentOrdersEndpoints extends EndpointsBase {
   private static paymentsApi: string = '/payments/v1'
-  /**
-   * Get payment orders page by query parameters.
-   *
-   * @see https://developers.mymoid.com/api-reference#/operations/search-payment-orders
-   *
-   * @param query Query parameters.
-   * @returns Payment orders page.
-   *
-   */
-  public async get(
-    query?: Camelize<PaymentOrdersQueryParameters>
-  ): Promise<Camelize<PaymentOrders>> {
-    const organizationId = this.api.getOrganizationId()
-
-    const params = createUrlParamsString(
-      decamelize({
-        organizationId,
-        ...query
-      })
-    )
-
-    const response: PaymentOrders = await this.getRequest(
-      PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
-    )
-
-    return camelize(response)
-  }
 
   /**
    * Create a new payment order.
@@ -53,6 +26,51 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
     const response: PaymentOrder = await this.postRequest(
       PaymentOrdersEndpoints.paymentsApi + '/payment-orders',
       decamelize(paymentOrder)
+    )
+
+    return camelize(response)
+  }
+
+  /**
+   * Get payment order by id.
+   *
+   * @see https://developers.mymoid.com/api-reference#/operations/GetPaymentOrderByPaymentOrderId
+   *
+   * @param id Payment order id.
+   * @returns A Promise that resolves to the payment order.
+   *
+   * @throws {ApiError}
+   * This exception is thrown if the payment order is not found.
+   */
+  public async getById(id: string): Promise<Camelize<PaymentOrder>> {
+    const response: PaymentOrder = await this.getRequest(
+      PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}`
+    )
+    return camelize(response)
+  }
+
+  /**
+   * Get payment orders page by query parameters.
+   *
+   * @see https://developers.mymoid.com/api-reference#/operations/search-payment-orders
+   *
+   * @param query Query parameters.
+   * @returns A Promise that resolves to the payment orders list.
+   *
+   */
+  public async get(
+    query?: Camelize<PaymentOrdersQueryParameters>
+  ): Promise<Camelize<PaymentOrders>> {
+    const organizationId = this.api.getOrganizationId()
+    const params = createUrlParamsString(
+      decamelize({
+        organizationId,
+        ...query
+      })
+    )
+
+    const response: PaymentOrders = await this.getRequest(
+      PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
     )
 
     return camelize(response)
