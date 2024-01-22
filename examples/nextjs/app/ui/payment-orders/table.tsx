@@ -1,7 +1,8 @@
-import { type PaymentOrder, Camelize } from '@mymoid/api'
-import PaymentOrderStatus from './status'
-import { formatCurrency } from '@/app/lib/utils'
 import Link from 'next/link'
+import { type PaymentOrder, Camelize } from '@mymoid/api'
+import { formatCurrency } from '@/app/lib/utils'
+import PaymentOrderStatus from './status'
+import { Button } from '../button'
 
 export default function PaymentOrdersTable({
   paymentOrders
@@ -12,12 +13,12 @@ export default function PaymentOrdersTable({
     <table className="min-w-full">
       <thead className="border-b border-neutral-600">
         <tr>
-          {['Amount', 'Status', 'Concept', 'Short Code', 'Date'].map(
+          {['Amount', 'Status', 'Concept', 'Short Code', 'Date', 'Actions'].map(
             (title) => (
               <th
                 key={title}
                 scope="col"
-                className="px-4 py-3 text-xs font-normal uppercase"
+                className="px-4 py-3 text-xs font-normal uppercase whitespace-nowrap"
               >
                 {title}
               </th>
@@ -57,23 +58,18 @@ export default function PaymentOrdersTable({
                 minute: 'numeric'
               })}
             </td>
-            <td className="group/edit opacity-0 whitespace-nowrap px-4 py-3 text-sm group-hover/item:opacity-100 transition-opacity">
-              <Link href={`/${paymentOrder.paymentOrderId}`}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                  />
-                </svg>
-              </Link>
+            <td className="whitespace-nowrap px-4 py-3 text-sm">
+              <div className="flex gap-1 justify-end">
+                {(paymentOrder.status === 'PAID' ||
+                  paymentOrder.status === 'PARTIALLY_REFUNDED') && (
+                  <Link href={`/${paymentOrder.paymentOrderId}/refund`}>
+                    <Button className="text-xs inline-lock bg">Refund</Button>
+                  </Link>
+                )}
+                <Link href={`/${paymentOrder.paymentOrderId}`}>
+                  <Button className="text-xs inline-lock">View details</Button>
+                </Link>
+              </div>
             </td>
           </tr>
         ))}

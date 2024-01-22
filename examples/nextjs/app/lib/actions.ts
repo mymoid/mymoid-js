@@ -24,3 +24,19 @@ export async function createPaymentOrder(formData: FormData) {
   revalidatePath('/')
   redirect('/')
 }
+
+export async function refundPaymentOrder(formData: FormData) {
+  // Validate form fields
+  // ...
+
+  const id = formData.get('id') as string
+  const amount = toCents(formData.get('amount') as string)
+  await mymoid.paymentOrders.refund(id, Number(amount))
+
+  revalidatePath(`/${id}`)
+  redirect(`/${id}`)
+}
+
+function toCents(value: string | number): string {
+  return (Number(value) * 100).toFixed()
+}
