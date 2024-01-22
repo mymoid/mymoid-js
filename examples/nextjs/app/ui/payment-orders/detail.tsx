@@ -1,6 +1,6 @@
 import { mymoid } from '@/app/lib/mymoid-api'
 import { formatCurrency } from '@/app/lib/utils'
-import { Field } from '../Field'
+import { Field } from '../field'
 
 export default async function PaymentOrderDetail({ id }: { id: string }) {
   const paymentOrder = await mymoid.paymentOrders.getById(id)
@@ -8,7 +8,7 @@ export default async function PaymentOrderDetail({ id }: { id: string }) {
     <div className="flex flex-row gap-4">
       <div className="flex flex-col gap-4 basis-1/2">
         <Field
-          title="Creation date:"
+          title="Creation date"
           value={new Date(paymentOrder.creationDate).toUTCString()}
         />
         <Field title="Currency" value={paymentOrder.currency} />
