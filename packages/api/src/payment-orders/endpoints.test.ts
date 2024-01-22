@@ -157,7 +157,7 @@ describe('Payment order refund', () => {
   it('should call fetch with payment order id and body amount', async () => {
     await mymoidApi.paymentOrders.refund('123456789', 100)
     expect(fetchSpy).toBeCalledWith(
-      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789',
+      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789/refund',
       {
         body: JSON.stringify({ amount: 100 }),
         headers: expectedHeaders,
@@ -168,7 +168,7 @@ describe('Payment order refund', () => {
   it('should call fetch with payment order id and NOT body amount', async () => {
     await mymoidApi.paymentOrders.refund('123456789')
     expect(fetchSpy).toBeCalledWith(
-      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789',
+      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789/refund',
       {
         body: undefined,
         headers: expectedHeaders,

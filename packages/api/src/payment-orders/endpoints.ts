@@ -96,7 +96,7 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
     amount?: number
   ): Promise<Camelize<PaymentOrder>> {
     const response: PaymentOrder = await this.postRequest(
-      PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}`,
+      PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}/refund`,
       amount && { amount }
     )
     return camelize(response)
