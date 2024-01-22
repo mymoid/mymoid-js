@@ -5,7 +5,7 @@ export default function MainHeader({
 }: {
   title: string
   subtitle: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }) {
   return (
     <header className="flex justify-between items-center mb-5">
