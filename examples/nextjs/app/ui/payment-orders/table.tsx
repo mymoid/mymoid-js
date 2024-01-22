@@ -1,6 +1,7 @@
 import { type PaymentOrder, Camelize } from '@mymoid/api'
 import PaymentOrderStatus from './status'
 import { formatCurrency } from '@/app/lib/utils'
+import Link from 'next/link'
 
 export default function PaymentOrdersTable({
   paymentOrders
@@ -28,7 +29,7 @@ export default function PaymentOrdersTable({
         {paymentOrders?.map((paymentOrder) => (
           <tr
             key={paymentOrder.paymentOrderId}
-            className="border-b border-neutral-600"
+            className="group/item border-b border-neutral-600 hover:bg-gray-800"
           >
             <td className="whitespace-nowrap px-4 py-3 text-sm">
               <div className="flex gap-2">
@@ -55,6 +56,24 @@ export default function PaymentOrdersTable({
                 hour: 'numeric',
                 minute: 'numeric'
               })}
+            </td>
+            <td className="group/edit opacity-0 whitespace-nowrap px-4 py-3 text-sm group-hover/item:opacity-100 transition-opacity">
+              <Link href={`/${paymentOrder.paymentOrderId}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </Link>
             </td>
           </tr>
         ))}
