@@ -1,5 +1,11 @@
 # @mymoid/api
 
+## 0.3.0
+
+### Minor Changes
+
+- 7f69380: We're thrilled to introduce a powerful enhancement to streamline your experience: the ability to effortlessly retrieve payment orders by their unique identifiers! Say goodbye to unnecessary complexity and hello to efficiency with our new "Get payment order by id" feature.
+
 ## 0.2.0
 
 ### Minor Changes
