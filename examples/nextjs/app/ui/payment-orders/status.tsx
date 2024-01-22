@@ -1,4 +1,4 @@
-import { PaymentOrderStatus as Status } from 'mymoid-api'
+import { PaymentOrderStatus as Status } from '@mymoid/api'
 
 export default function PaymentOrderStatus({ status }: { status: Status }) {
   const generateClassString = (status: Status) => {
