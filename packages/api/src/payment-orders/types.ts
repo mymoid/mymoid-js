@@ -13,37 +13,37 @@ export type PaymentOrderStatus =
   | 'EXPIRED'
 
 export interface PaymentOrder {
-  payment_order_id: string
+  paymentOrderId: string
   amount: number
   concept: string
-  creation_date: string
-  expiration_date: string
+  creationDate: string
+  expirationDate: string
   currency: Currency
   reference: string
-  short_code: string
+  shortCode: string
   status: PaymentOrderStatus
 }
 
 export type PaymentOrders = List<PaymentOrder>
 export interface PaymentOrdersQueryParameters extends Pagination {
-  organization_id?: string
+  organizationId?: string
   q?: string
-  start_date?: string
-  end_date?: string
-  max_amount?: number
-  min_amount?: number
+  startDate?: string
+  endDate?: string
+  maxAmount?: number
+  minAmount?: number
   status?: PaymentOrderStatus[]
-  payment_points?: string[]
+  paymentPoints?: string[]
 }
 
 export interface PaymentOrderCreationParameters
   extends Omit<
     PaymentOrder,
-    | 'payment_order_id'
+    | 'paymentOrderId'
     | 'status'
-    | 'creation_date'
-    | 'short_code'
-    | 'expiration_date'
+    | 'creationDate'
+    | 'shortCode'
+    | 'expirationDate'
   > {
-  expiration_date?: string
+  expirationDate?: string
 }

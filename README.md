@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./examples/nextjs/public/m.svg">
-      <img src="./examples/nextjs/public/m.svg" height="64">
+      <source media="(prefers-color-scheme: dark)" srcset="https://mymoid-static.s3.amazonaws.com/images/mymoid-suit/mymoid_m.svg">
+      <img src="https://mymoid-static.s3.amazonaws.com/images/mymoid-suit/mymoid_m.svg" height="64">
     </picture>
   </a>
 </p>

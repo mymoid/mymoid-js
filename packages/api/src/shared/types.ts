@@ -3,12 +3,26 @@ type CamelCase<S extends string> =
     ? `${Lowercase<FirstWord>}${Uppercase<SecondChar>}${CamelCase<Remaining>}`
     : Lowercase<S>
 
+type SnakeCase<S extends string> = S extends `${infer T}${infer U}`
+  ? `${T extends Capitalize<T> ? '_' : ''}${Lowercase<T>}${SnakeCase<U>}`
+  : Lowercase<S>
+
 export type Camelize<T> = {
   [key in keyof T as CamelCase<string & key>]: T[key] extends Array<
     infer ArrayItem
   >
     ? ArrayItem extends T[keyof T]
       ? Camelize<ArrayItem>[]
+      : T[key]
+    : T[key]
+}
+
+export type Decamelize<T> = {
+  [key in keyof T as SnakeCase<string & key>]: T[key] extends Array<
+    infer ArrayItem
+  >
+    ? ArrayItem extends T[keyof T]
+      ? Decamelize<ArrayItem>[]
       : T[key]
     : T[key]
 }
@@ -29,8 +43,8 @@ export interface Pagination {
 export interface List<TItemType> extends Record<string, unknown> {
   page: number
   limit: number
-  total_elements: number
-  number_of_elements: number
+  totalElements: number
+  numberOfElements: number
   last: boolean
   first: boolean
   empty: boolean

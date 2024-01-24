@@ -1,8 +1,9 @@
+import { Decamelize } from '../../../shared/types'
 import { PaymentOrder } from '../../types'
 
 export function buildValidPaymentOrder(
-  paymentOrder?: Partial<PaymentOrder>
-): PaymentOrder {
+  paymentOrder?: Partial<Decamelize<PaymentOrder>>
+): Decamelize<PaymentOrder> {
   return {
     payment_order_id: '123',
     amount: 100,

@@ -49,7 +49,7 @@ export class EndpointsBase {
     return await this.makeRequest<TReturnType>('GET', url)
   }
 
-  protected async postRequest<TReturnType, TBody>(
+  protected async postRequest<TReturnType, TBody = unknown>(
     url: string,
     body?: TBody
   ): Promise<TReturnType> {

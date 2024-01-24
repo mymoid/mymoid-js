@@ -40,6 +40,7 @@ describe('Payment orders list', () => {
       q: 'q',
       status: ['AVAILABLE'] as PaymentOrderStatus[]
     })
+
     expect(fetchSpy).toBeCalledWith(
       'https://apis.test.mymoid.com/payments/v1/payment-orders?organization_id=ORG_12345&start_date=2023-12-31T00%3A00%3A00.000Z&end_date=2023-12-31T00%3A00%3A00.000Z&max_amount=100000&payment_points=paymentPoints1%2CpaymentPoints2&page=1&limit=10&q=q&status=AVAILABLE',
       {
@@ -55,8 +56,8 @@ describe('Payment orders list', () => {
   })
 
   it('should return a payment orders list camelize', async () => {
-    const response: Camelize<PaymentOrders> =
-      await mymoidApi.paymentOrders.get()
+    const response = await mymoidApi.paymentOrders.get()
+
     expect(response).toEqual({
       limit: 10,
       page: 1,
@@ -99,6 +100,7 @@ describe('Payment order details', () => {
 
   it('should call fetch with payment order id', async () => {
     await mymoidApi.paymentOrders.getById('123')
+
     expect(fetchSpy).toBeCalledWith(
       'https://apis.test.mymoid.com/payments/v1/payment-orders/123',
       {
@@ -112,9 +114,10 @@ describe('Payment order details', () => {
       }
     )
   })
+
   it("should return a payment order's details camelize", async () => {
-    const response: Camelize<PaymentOrder> =
-      await mymoidApi.paymentOrders.getById('123')
+    const response = await mymoidApi.paymentOrders.getById('123')
+
     expect(response).toEqual({
       paymentOrderId: '123',
       amount: 100,
