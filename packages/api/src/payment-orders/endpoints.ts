@@ -91,11 +91,8 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    * @throws {ApiError}
    * This exception is thrown if the payment order is not found.
    */
-  public async refund(
-    id: string,
-    amount?: number
-  ): Promise<Camelize<PaymentOrder>> {
-    const response: PaymentOrder = await this.postRequest(
+  public async refund(id: string, amount?: number): Promise<PaymentOrder> {
+    const response = await this.postRequest<Decamelize<PaymentOrder>>(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}/refund`,
       amount && { amount }
     )
