@@ -75,4 +75,30 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
 
     return camelize(response)
   }
+
+  /**
+   * Refund payment order (Paid, Partially Refunded).
+   *
+   * @see https://developers.mymoid.com/api-reference#/operations/Refund
+   *
+   * @param id Payment order id.
+   * @param Amount to be refunded. This should be an integer value
+   * (decimals are not accepted) and represents the value in cents. If the amount is
+   * not provided, the entire payment order amount will be refunded.
+   *
+   * @returns A Promise that resolves to the payment order.
+   *
+   * @throws {ApiError}
+   * This exception is thrown if the payment order is not found.
+   */
+  public async refund(
+    id: string,
+    amount?: number
+  ): Promise<Camelize<PaymentOrder>> {
+    const response: PaymentOrder = await this.postRequest(
+      PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}/refund`,
+      amount && { amount }
+    )
+    return camelize(response)
+  }
 }

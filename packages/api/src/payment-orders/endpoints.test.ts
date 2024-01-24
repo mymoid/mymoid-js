@@ -72,7 +72,7 @@ describe('Payment orders list', () => {
           amount: 100,
           concept: 'concept',
           creationDate: '2021-01-01T00:00:00.000Z',
-          expirationDate: '2021-01-01T00:00:00.000Z',
+          expirationDate: '2021-01-03T00:00:00.000Z',
           currency: 'EUR',
           reference: 'reference',
           shortCode: 'short_code',
@@ -123,11 +123,75 @@ describe('Payment order details', () => {
       amount: 100,
       concept: 'concept',
       creationDate: '2021-01-01T00:00:00.000Z',
-      expirationDate: '2021-01-01T00:00:00.000Z',
+      expirationDate: '2021-01-03T00:00:00.000Z',
       currency: 'EUR',
       reference: 'reference',
       shortCode: 'short_code',
       status: 'AVAILABLE'
+    })
+  })
+})
+
+describe('Payment order refund', () => {
+  const expectedHttpMethod = 'POST'
+  const expectedHeaders = {
+    'Content-Type': 'application/json',
+    'x-api-key': 'KEY_1234567890',
+    'x-organization-id': 'ORG_12345'
+  }
+
+  beforeEach(() => {
+    const paymentOrder = buildValidPaymentOrder({
+      payment_order_id: '123456789',
+      status: 'REFUNDED'
+    })
+    fetchSpy.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(paymentOrder)
+      } as Response)
+    )
+  })
+
+  afterEach(() => {
+    fetchSpy.mockReset()
+  })
+
+  it('should call fetch with payment order id and body amount', async () => {
+    await mymoidApi.paymentOrders.refund('123456789', 100)
+    expect(fetchSpy).toBeCalledWith(
+      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789/refund',
+      {
+        body: JSON.stringify({ amount: 100 }),
+        headers: expectedHeaders,
+        method: expectedHttpMethod
+      }
+    )
+  })
+  it('should call fetch with payment order id and NOT body amount', async () => {
+    await mymoidApi.paymentOrders.refund('123456789')
+    expect(fetchSpy).toBeCalledWith(
+      'https://apis.test.mymoid.com/payments/v1/payment-orders/123456789/refund',
+      {
+        body: undefined,
+        headers: expectedHeaders,
+        method: expectedHttpMethod
+      }
+    )
+  })
+  it("should return a payment order's details camelize", async () => {
+    const response: Camelize<PaymentOrder> =
+      await mymoidApi.paymentOrders.refund('123456789')
+    expect(response).toEqual({
+      paymentOrderId: '123456789',
+      amount: 100,
+      concept: 'concept',
+      creationDate: '2021-01-01T00:00:00.000Z',
+      expirationDate: '2021-01-03T00:00:00.000Z',
+      currency: 'EUR',
+      reference: 'reference',
+      shortCode: 'short_code',
+      status: 'REFUNDED'
     })
   })
 })
