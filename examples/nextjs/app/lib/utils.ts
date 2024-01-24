@@ -18,3 +18,7 @@ export const generateFakePaymentOrderData = (): FakePaymentOrderData => ({
   concept: faker.commerce.productName(),
   amount: Number(faker.finance.amount())
 })
+
+export function toCents(value: string | number): number {
+  return Number((Number(value) * 100).toFixed())
+}

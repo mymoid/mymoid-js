@@ -4,6 +4,7 @@ import { PaymentOrderCreationParameters } from '@mymoid/api'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { mymoid } from './mymoid-api'
+import { toCents } from './utils'
 
 export async function createPaymentOrder(formData: FormData) {
   // Validate form fields
@@ -31,12 +32,8 @@ export async function refundPaymentOrder(formData: FormData) {
 
   const id = formData.get('id') as string
   const amount = toCents(formData.get('amount') as string)
-  await mymoid.paymentOrders.refund(id, Number(amount))
+  await mymoid.paymentOrders.refund(id, amount)
 
   revalidatePath(`/${id}`)
   redirect(`/${id}`)
-}
-
-function toCents(value: string | number): string {
-  return (Number(value) * 100).toFixed()
 }
