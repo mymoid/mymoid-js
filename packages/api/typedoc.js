@@ -7,6 +7,7 @@ module.exports = {
     '**/node_modules/**/*',
     '**/errors/**/*',
     '**/shared/utils*',
+    '**/shared/endpoints-base*',
     '**/*.test.ts*',
     '**/test/**',
     ...excludeFiles.map((f) => `./src/${f}.ts`)
