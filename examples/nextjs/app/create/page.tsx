@@ -34,7 +34,6 @@ export default function Page() {
           </Button>
         </form>
       </MainHeader>
-
       <Form />
     </>
   )
