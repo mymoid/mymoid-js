@@ -54,9 +54,7 @@ const api = await MymoidApi({
 
 Explore the available API methods in the `@mymoid/api`.
 
-- [Configuration Options]()
-- [MymoidApi]()
-- [paymentsOrders]()
+- [API Reference](https://mymoid.github.io/mymoid-js/api)
 
 ## Feedback
 
