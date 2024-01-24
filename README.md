@@ -1,12 +1,3 @@
-<p align="center">
-  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
-   <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./examples/nextjs/public/m.svg">
-      <img src="./examples/nextjs/public/m.svg" height="64">
-    </picture>
-  </a>
-</p>
-
 # MYMOID JavaScript Libraries
 
 This monorepo combines a set of JavaScript/TypeScript libraries designed to facilitate intuitive interaction with the MYMOID REST API.

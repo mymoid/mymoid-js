@@ -1,12 +1,3 @@
-<p align="center">
-  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
-   <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./public/m.svg">
-      <img src="./public/m.svg" height="64">
-    </picture>
-  </a>
-</p>
-
 # MYMOID Application Example with Next.js (App Router)
 
 Hey there! 👋 Welcome to our MYMOID API SDK example with Next.js and the App Router.

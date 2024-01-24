@@ -1,12 +1,3 @@
-<p align="center">
-  <a href="https://developers.mymoid.com" target="_blank" rel="noopener noreferrer">
-   <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="../../examples/nextjs/public/m.svg">
-      <img src="../../examples/nextjs/public/m.svg" height="64">
-    </picture>
-  </a>
-</p>
-
 # MYMOID JavaScript API SDK
 
 [![NPM Version](https://img.shields.io/npm/v/@mymoid/api)](https://www.npmjs.com/package/@mymoid/api)
