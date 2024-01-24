@@ -1,5 +1,16 @@
 # nextjs
 
+## 1.3.0
+
+### Minor Changes
+
+- 5a8d81d: Simplify the refund process with our newly added method example. Users can now effortlessly refund payment orders using their unique identifier (ID), offering a more efficient and targeted approach to managing transactions.
+
+### Patch Changes
+
+- Updated dependencies [5a8d81d]
+  - @mymoid/api@0.4.0
+
 ## 1.2.0
 
 ### Minor Changes
