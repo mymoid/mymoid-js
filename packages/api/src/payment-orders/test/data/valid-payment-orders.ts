@@ -1,6 +1,7 @@
+import { Decamelize } from '../../../shared/types'
 import { PaymentOrders } from '../../types'
 
-export function buildValidPaymentOrdersList(): PaymentOrders {
+export function buildValidPaymentOrdersList(): Decamelize<PaymentOrders> {
   return {
     limit: 10,
     page: 1,

@@ -1,4 +1,4 @@
-import { type PaymentOrder, Camelize } from '@mymoid/api'
+import { type PaymentOrder } from '@mymoid/api'
 import PaymentOrderStatus from './status'
 import { formatCurrency } from '@/app/lib/utils'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function PaymentOrdersTable({
   paymentOrders
 }: {
-  paymentOrders?: Camelize<PaymentOrder>[]
+  paymentOrders?: PaymentOrder[]
 }) {
   return (
     <table className="min-w-full">

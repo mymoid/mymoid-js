@@ -1,6 +1,7 @@
+import { Decamelize } from '../../../shared/types'
 import { PaymentOrder } from '../../types'
 
-export function buildValidPaymentOrder(): PaymentOrder {
+export function buildValidPaymentOrder(): Decamelize<PaymentOrder> {
   return {
     payment_order_id: '123',
     amount: 100,

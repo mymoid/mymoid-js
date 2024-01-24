@@ -6,7 +6,7 @@ import {
   PaymentOrders,
   PaymentOrdersQueryParameters
 } from './types'
-import { Camelize } from '../shared/types'
+import { Camelize, Decamelize } from '../shared/types'
 
 export class PaymentOrdersEndpoints extends EndpointsBase {
   private static paymentsApi: string = '/payments/v1'
@@ -22,8 +22,8 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    */
   public async create(
     paymentOrder: PaymentOrderCreationParameters
-  ): Promise<Camelize<PaymentOrder>> {
-    const response: PaymentOrder = await this.postRequest(
+  ): Promise<PaymentOrder> {
+    const response = await this.postRequest<Decamelize<PaymentOrder>>(
       PaymentOrdersEndpoints.paymentsApi + '/payment-orders',
       decamelize(paymentOrder)
     )
@@ -42,8 +42,8 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    * @throws {ApiError}
    * This exception is thrown if the payment order is not found.
    */
-  public async getById(id: string): Promise<Camelize<PaymentOrder>> {
-    const response: PaymentOrder = await this.getRequest(
+  public async getById(id: string): Promise<PaymentOrder> {
+    const response = await this.getRequest<Decamelize<PaymentOrder>>(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders/${id}`
     )
     return camelize(response)
@@ -59,8 +59,8 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
    *
    */
   public async get(
-    query?: Camelize<PaymentOrdersQueryParameters>
-  ): Promise<Camelize<PaymentOrders>> {
+    query?: PaymentOrdersQueryParameters
+  ): Promise<PaymentOrders> {
     const organizationId = this.api.getOrganizationId()
     const params = createUrlParamsString(
       decamelize({
@@ -69,7 +69,7 @@ export class PaymentOrdersEndpoints extends EndpointsBase {
       })
     )
 
-    const response: PaymentOrders = await this.getRequest(
+    const response = await this.getRequest<Decamelize<PaymentOrders>>(
       PaymentOrdersEndpoints.paymentsApi + `/payment-orders${params}`
     )
 
