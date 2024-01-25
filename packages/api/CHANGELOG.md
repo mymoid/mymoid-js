@@ -1,5 +1,11 @@
 # @mymoid/api
 
+## 0.5.0
+
+### Minor Changes
+
+- 098e628: Previously we exported content using snake case types. To facilitate the use of camel case types on the client side, we introduced a generic Camelize type for conversion. Recognising the prevalent use of camel case in front-end development, we have simplified the process by eliminating the need for type transformation. Now, types are exported directly into camel case.
+
 ## 0.4.0
 
 ### Minor Changes
