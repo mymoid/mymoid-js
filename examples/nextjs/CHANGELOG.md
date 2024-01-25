@@ -1,5 +1,12 @@
 # nextjs
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies [098e628]
+  - @mymoid/api@0.5.0
+
 ## 1.3.0
 
 ### Minor Changes
