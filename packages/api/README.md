@@ -7,11 +7,11 @@ Welcome to the MYMOID JavaScript API SDK! 🎉 This library provides an easy-to-
 
 ## Documentation
 
-For detailed instructions on getting started with the MYMOID JavaScript API SDK, please refer to our [developer's portal](https://developers.mymoid.com).
+- For detailed instructions on getting started with the MYMOID JavaScript API SDK, please refer to our [developer's portal getting started](https://developers.mymoid.com/guides/getting-started#getting-started).
 
-For a complete reference of the API, please refer to our [API reference](https://developers.mymoid.com/api-reference).
+- For a complete reference of the API, please refer to our [API reference](https://developers.mymoid.com/api-reference).
 
-For a complete reference of the SDK, please refer to our [SDK Documentation](https://mymoid.github.io/mymoid-js/api/).
+- For a complete reference of the SDK, please refer to our [SDK Documentation](https://mymoid.github.io/mymoid-js/api/).
 
 ## Getting Started
 
