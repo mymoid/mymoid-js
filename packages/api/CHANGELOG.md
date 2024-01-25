@@ -1,5 +1,11 @@
 # @mymoid/api
 
+## 0.5.1
+
+### Patch Changes
+
+- ae7002b: Update links to SDK documentation
+
 ## 0.5.0
 
 ### Minor Changes
