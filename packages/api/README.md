@@ -35,7 +35,7 @@ Create a `MymoidApi` instance before initializing your application. You should o
 Set the following environment variables in your project:
 
 ```sh
-MYMOID_BASE_URL=https://apis.sta.mymoid.com
+MYMOID_BASE_URL=https://apis.san.mymoid.com
 MYMOID_API_KEY=*********************
 MYMOID_ORGANIZATION_ID=******************
 ```
