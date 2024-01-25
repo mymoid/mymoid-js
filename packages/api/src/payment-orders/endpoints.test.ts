@@ -4,8 +4,7 @@ import {
   buildValidPaymentOrder
 } from './test/data'
 import { MymoidApi } from '../api'
-import { PaymentOrderStatus, type PaymentOrder, PaymentOrders } from './types'
-import { Camelize } from '../shared/types'
+import { PaymentOrderStatus } from './types'
 
 const fetchSpy = vi.spyOn(global, 'fetch')
 const mymoidApi = new MymoidApi({
@@ -180,8 +179,7 @@ describe('Payment order refund', () => {
     )
   })
   it("should return a payment order's details camelize", async () => {
-    const response: Camelize<PaymentOrder> =
-      await mymoidApi.paymentOrders.refund('123456789')
+    const response = await mymoidApi.paymentOrders.refund('123456789')
     expect(response).toEqual({
       paymentOrderId: '123456789',
       amount: 100,
