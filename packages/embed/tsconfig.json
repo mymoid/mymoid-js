@@ -1,0 +1,15 @@
+{
+  "include": ["src", "src/embed/test"],
+  "exclude": ["dist", "esm", "node_modules"],
+  "compilerOptions": {
+    "target": "es2022",
+    "outDir": "dist",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "moduleResolution": "bundler",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["vitest/globals"]
+  }
+}
