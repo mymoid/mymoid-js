@@ -1,43 +1,29 @@
 import { EventEmitter } from './event-emitter'
 import { Events, Options } from './shared/types'
 
-const defaultSuccessUrl = ''
-const defaultErrorUrl = ''
 const defaultPaymentOrderId = ''
 const defaultPaymentPointId = ''
 const defaultInputs = {}
 const defaultEmbedId = ''
 const defaultSubmitButtonId = ''
 const defaultIframe3dsId = ''
-const defaultValidationsState = {
-  cardNumber: false,
-  expirationDate: false,
-  cvv: false
-}
 const defaultIframeBaseUrl = 'http://localhost:3001/embed'
 const defaultIframeElement = null
 const defaultIsValid = false
 
 /**
- * The client for interacting with the MYMOID API.
+ * The client for interacting with the MYMOID EMBED FORM.
  *
  * @class
  * @public
  */
 export class MymoidEmbed {
-  private successUrl: string
-  private errorUrl: string
   private paymentOrderId: string
   private paymentPointId: string
   private inputs: any
   private embedFormId: string
   private submitButtonId: string
   private iframe3dsId: string
-  private validationStates: {
-    cardNumber: boolean
-    expirationDate: boolean
-    cvv: boolean
-  }
   private isValid: boolean
   private iframeBaseUrl: string
   private iframeElement: HTMLIFrameElement | null
@@ -49,26 +35,26 @@ export class MymoidEmbed {
 
   /**
    * Creates an instance of the MymoidEmbed.
-   * @param {Options} options - The options object containing the short code.
-   * @throws Will throw an error if the short code is not provided.
+   * @param {Options} options - The options object containing mandatory data and optional data.
    */
   public constructor(option: Options) {
-    this.successUrl = option?.successUrl ?? defaultSuccessUrl
-    this.errorUrl = option?.errorUrl ?? defaultErrorUrl
     this.paymentOrderId = option?.paymentOrderId ?? defaultPaymentOrderId
     this.paymentPointId = option?.paymentPointId ?? defaultPaymentPointId
     this.inputs = option?.inputs ?? defaultInputs
     this.embedFormId = option?.embedFormId ?? defaultEmbedId
     this.submitButtonId = option?.submitButtonId ?? defaultSubmitButtonId
     this.iframe3dsId = option?.iframe3dsId ?? defaultIframe3dsId
-    this.validationStates = defaultValidationsState
     this.iframeBaseUrl = defaultIframeBaseUrl
     this.iframeElement = defaultIframeElement
     this.isValid = defaultIsValid
   }
 
+  /**
+   * Initialize the SDK and check that the mandatory data is correct.
+   * @throws Will throw an error if the payment order id, payment point id,
+   * embed form id or submit button id is not provided or not exist in the html.
+   */
   public init() {
-    console.log('init')
     if (!this.paymentOrderId) {
       throw Error('paymentOrderId not found.')
     }
@@ -92,18 +78,25 @@ export class MymoidEmbed {
     this.triggerEvent('initialized')
   }
 
+  /**
+   * Render the embed form to the DOM.
+   */
   public render() {
-    console.log('render')
     const iframe = document.createElement('iframe')
-    const styleBase64 = this.inputs.style
-      ? btoa(JSON.stringify(this.inputs.style))
-      : ''
+    const optionsBase64 = btoa(
+      JSON.stringify({
+        inputOptions: this.inputs || {},
+        paymentOrderId: this.paymentOrderId,
+        paymentPointId: this.paymentPointId
+      })
+    )
+
     iframe.src = `${this.iframeBaseUrl}${
-      styleBase64 && `?style=${styleBase64}`
+      optionsBase64 && `?options=${optionsBase64}`
     }`
     iframe.name = this.embedFormId
-    iframe.height = '110px'
-    iframe.width = '700px'
+    iframe.height = '100%'
+    iframe.width = '100%'
     iframe.style.border = 'none'
 
     const container = document.getElementById(this.embedFormId)
@@ -121,6 +114,9 @@ export class MymoidEmbed {
     this.triggerEvent('loaded')
   }
 
+  /**
+   * Check if the form is loaded in the Iframe
+   */
   public isFormLoaded() {
     return Boolean(this.iframeElement)
   }
@@ -186,7 +182,7 @@ export class MymoidEmbed {
         })
       } else {
         if (data) {
-          this.triggerEvent('3ds:status', { start: true })
+          this.triggerEvent('3ds:status', { start: true, data })
           const iframe = document.getElementById(
             this.iframe3dsId
           ) as HTMLElement
@@ -197,7 +193,11 @@ export class MymoidEmbed {
     }
 
     if (eventType === 'validation') {
-      this.triggerEvent('validation', isValid)
+      console.log(data)
+      this.triggerEvent('validation', {
+        errors: JSON.parse(data || '{}'),
+        isValid
+      })
       this.isValid = isValid
       this.updateSubmitButtonState()
     }
@@ -245,6 +245,7 @@ export class MymoidEmbed {
   }
 
   private async submitPaymentForm() {
+    this.triggerEvent('submit')
     const inputHolderName = document.getElementById(
       'input-holderName'
     ) as HTMLInputElement

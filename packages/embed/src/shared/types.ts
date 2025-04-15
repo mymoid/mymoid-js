@@ -33,20 +33,18 @@ export type Options = {
   paymentOrderId: string
   paymentPointId: string
   iframe3dsId?: string
-  successUrl?: string
-  errorUrl?: string
-  inputs?: any
+  inputs?: InputOptions
 }
 
-export type InputOptions = {
+type InputOptions = {
   style?: { borderRadius?: string; borderColor?: string; borderWidth?: string }
-  placeholder?: string
+  placeholders?: { cardNumber: string; expirationDate: string; cvv: string }
 }
 
 export type Events = {
   initialized: void
   loaded: void
-  validation: boolean
+  validation: { isValid: boolean; errors: any }
   '3ds:status': any
   submit: {}
   error: {}
