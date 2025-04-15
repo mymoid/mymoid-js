@@ -19,7 +19,7 @@ Explore our [developer's portal](https://developers.mymoid.com) for comprehensiv
 
 - [@mymoid/api](https://github.com/mymoid/mymoid-js/tree/main/packages/api#readme): Offers an easy-to-use interface for access to the MYMOID REST API.
 
-## Runing the example app
+## Running the example app
 
 The provided example app is powered by the Next.js App Router.
 
