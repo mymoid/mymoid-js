@@ -105,20 +105,31 @@ export class MymoidEmbed {
     this.iframeElement = iframe
 
     window.addEventListener('message', this.handleMessage.bind(this))
-
-    const submitButton = document.getElementById(
-      this.submitButtonId
-    ) as HTMLButtonElement
-
-    submitButton.addEventListener('click', () => this.submitPaymentForm())
     this.triggerEvent('loaded')
   }
 
   /**
    * Check if the form is loaded in the Iframe
+
    */
   public isFormLoaded() {
     return Boolean(this.iframeElement)
+  }
+
+  /**
+   * Submit to the MYMOID API.
+   * @param {holderNameValue} holderNameValue - The holder name input value if you are using ones, default value is a empty string.
+   */
+  public async submitPaymentForm(holderNameValue?: string) {
+    this.triggerEvent('submit')
+
+    this.iframeElement?.contentWindow?.postMessage(
+      {
+        type: 'submit',
+        inputs: { holderName: holderNameValue || '' }
+      },
+      this.iframeBaseUrl
+    )
   }
 
   private triggerEvent<K extends keyof Events>(event: K, payload?: Events[K]) {
@@ -182,12 +193,16 @@ export class MymoidEmbed {
         })
       } else {
         if (data) {
-          this.triggerEvent('3ds:status', { start: true, data })
-          const iframe = document.getElementById(
-            this.iframe3dsId
-          ) as HTMLElement
-          iframe.style.display = 'block'
-          this.createForm(data?.action, this.iframe3dsId)
+          if (data.error) {
+            this.triggerEvent('3ds:status', { start: false, error: true, data })
+          } else {
+            this.triggerEvent('3ds:status', { start: true, data })
+            const iframe = document.getElementById(
+              this.iframe3dsId
+            ) as HTMLElement
+            iframe.style.display = 'block'
+            this.createForm(data?.action, this.iframe3dsId)
+          }
         }
       }
     }
@@ -242,20 +257,5 @@ export class MymoidEmbed {
     document.body.appendChild(form)
     form.submit()
     form.remove()
-  }
-
-  private async submitPaymentForm() {
-    this.triggerEvent('submit')
-    const inputHolderName = document.getElementById(
-      'input-holderName'
-    ) as HTMLInputElement
-
-    this.iframeElement?.contentWindow?.postMessage(
-      {
-        type: 'submit',
-        inputs: { holderName: inputHolderName?.value || '' }
-      },
-      this.iframeBaseUrl
-    )
   }
 }
