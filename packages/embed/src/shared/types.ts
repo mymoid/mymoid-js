@@ -32,7 +32,8 @@ export type Options = {
   submitButtonId: string
   paymentOrderId: string
   paymentPointId: string
-  iframe3dsId?: string
+  is3DSFlow: boolean
+  iframe3DSId?: string
   inputs?: InputOptions
 }
 
@@ -45,8 +46,10 @@ export type Events = {
   initialized: void
   loaded: void
   validation: { isValid: boolean; errors: any }
-  '3ds:status': any
-  submit: {}
-  error: {}
-  success: {}
+  payment: {
+    status: 'begin' | 'completed'
+    is3DS: boolean
+    result?: 'success' | 'error'
+    data?: any
+  }
 }

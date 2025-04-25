@@ -3,10 +3,11 @@ import { Events, Options } from './shared/types'
 
 const defaultPaymentOrderId = ''
 const defaultPaymentPointId = ''
+const defaultIs3DSFlow = false
 const defaultInputs = {}
 const defaultEmbedId = ''
 const defaultSubmitButtonId = ''
-const defaultIframe3dsId = ''
+const defaultIframe3DSId = ''
 const defaultIframeBaseUrl = 'http://localhost:3001/embed'
 const defaultIframeElement = null
 const defaultIsValid = false
@@ -20,10 +21,11 @@ const defaultIsValid = false
 export class MymoidEmbed {
   private paymentOrderId: string
   private paymentPointId: string
+  private is3DSFlow: boolean
   private inputs: any
   private embedFormId: string
   private submitButtonId: string
-  private iframe3dsId: string
+  private iframe3DSId: string
   private isValid: boolean
   private iframeBaseUrl: string
   private iframeElement: HTMLIFrameElement | null
@@ -40,10 +42,11 @@ export class MymoidEmbed {
   public constructor(option: Options) {
     this.paymentOrderId = option?.paymentOrderId ?? defaultPaymentOrderId
     this.paymentPointId = option?.paymentPointId ?? defaultPaymentPointId
+    this.is3DSFlow = option?.is3DSFlow ?? defaultIs3DSFlow
     this.inputs = option?.inputs ?? defaultInputs
     this.embedFormId = option?.embedFormId ?? defaultEmbedId
     this.submitButtonId = option?.submitButtonId ?? defaultSubmitButtonId
-    this.iframe3dsId = option?.iframe3dsId ?? defaultIframe3dsId
+    this.iframe3DSId = option?.iframe3DSId ?? defaultIframe3DSId
     this.iframeBaseUrl = defaultIframeBaseUrl
     this.iframeElement = defaultIframeElement
     this.isValid = defaultIsValid
@@ -87,7 +90,8 @@ export class MymoidEmbed {
       JSON.stringify({
         inputOptions: this.inputs || {},
         paymentOrderId: this.paymentOrderId,
-        paymentPointId: this.paymentPointId
+        paymentPointId: this.paymentPointId,
+        is3DSFlow: this.is3DSFlow
       })
     )
 
@@ -110,7 +114,6 @@ export class MymoidEmbed {
 
   /**
    * Check if the form is loaded in the Iframe
-
    */
   public isFormLoaded() {
     return Boolean(this.iframeElement)
@@ -121,7 +124,7 @@ export class MymoidEmbed {
    * @param {holderNameValue} holderNameValue - The holder name input value if you are using ones, default value is a empty string.
    */
   public async submitPaymentForm(holderNameValue?: string) {
-    this.triggerEvent('submit')
+    this.triggerEvent('payment', { status: 'begin', is3DS: this.is3DSFlow })
 
     this.iframeElement?.contentWindow?.postMessage(
       {
@@ -140,29 +143,32 @@ export class MymoidEmbed {
     // Ensure messages come from the trusted iframe source
     if (!this.iframeBaseUrl.startsWith(event.origin)) return
 
-    type FormDataKeys = keyof FormData
-
-    const { eventType, isValid, data, result } = event.data as {
-      field: FormDataKeys
-      value: unknown
-      eventType: 'validation' | '3ds-process'
+    const { eventType, isValid, data, result, status } = event.data as {
+      eventType: 'validation' | '3ds-process' | 'anonymous'
       isValid: boolean
       data: any
       result: 'success' | 'error'
+      status: 'begin' | 'completed'
     }
-
+    if (eventType === 'anonymous') {
+      this.triggerEvent('payment', {
+        status,
+        is3DS: false,
+        result,
+        data
+      })
+    }
     if (eventType === '3ds-process') {
       if (result) {
-        const iframe = document.getElementById(this.iframe3dsId) as HTMLElement
+        const iframe = document.getElementById(this.iframe3DSId) as HTMLElement
         iframe.style.display = 'none'
         if (result === 'success') {
-          this.triggerEvent('3ds:status', {
-            isCompleted: true,
-            error: false,
+          this.triggerEvent('payment', {
+            status,
+            is3DS: true,
+            result,
             data
           })
-          const loading = document.getElementById('loading') as HTMLElement
-          loading.style.display = 'block'
 
           this.createForm(
             {
@@ -183,26 +189,29 @@ export class MymoidEmbed {
                 }
               ]
             },
-            this.iframe3dsId
+            this.iframe3DSId
           )
+        } else {
+          this.triggerEvent('payment', {
+            status,
+            is3DS: true,
+            result: 'error',
+            data
+          })
         }
-        this.triggerEvent('3ds:status', {
-          isCompleted: true,
-          error: true,
-          data
-        })
       } else {
         if (data) {
-          if (data.error) {
-            this.triggerEvent('3ds:status', { start: false, error: true, data })
-          } else {
-            this.triggerEvent('3ds:status', { start: true, data })
-            const iframe = document.getElementById(
-              this.iframe3dsId
-            ) as HTMLElement
-            iframe.style.display = 'block'
-            this.createForm(data?.action, this.iframe3dsId)
-          }
+          this.triggerEvent('payment', {
+            status: 'begin',
+            is3DS: true,
+            result,
+            data
+          })
+          const iframe = document.getElementById(
+            this.iframe3DSId
+          ) as HTMLElement
+          iframe.style.display = 'block'
+          this.createForm(data?.action, this.iframe3DSId)
         }
       }
     }
@@ -237,7 +246,7 @@ export class MymoidEmbed {
     form.method = httpMethod
     form.action = url
 
-    const iframe = document.getElementById(this.iframe3dsId)
+    const iframe = document.getElementById(this.iframe3DSId)
 
     if (iframe) {
       iframe.setAttribute('name', target)
